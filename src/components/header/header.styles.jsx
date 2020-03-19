@@ -21,15 +21,14 @@ export const LogoContainer = styled(Link)`
   }
 `;
 
-// export const HeaderLinksContainer = styled.div`
-//   width: 50%;
-//   height: 100%;
-//   display: flex;
-//   align-items: center;
-//   justify-content: flex-end;
-// `;
+export const HeaderLinksContainer = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
 
-// export const HeaderLink = styled(Link)`
-//   padding: 10px 15px;
-//   cursor: pointer;
-// `;
+export const HeaderLink = styled(Link)`
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 18px;
+`;

@@ -1,6 +1,7 @@
 import React from "react";
 
 import loupe from "../../assets/loupe.svg";
+
 import {
   SearchPanelContainer,
   SearchPanelInput,
@@ -9,7 +10,7 @@ import {
 
 const SearchPanel = () => (
   <SearchPanelContainer>
-    <SearchPanelInput />
+    <SearchPanelInput placeholder="Search for gifts..." />
     <SearchPanelInputImage src={loupe} title="Search" />
   </SearchPanelContainer>
 );
