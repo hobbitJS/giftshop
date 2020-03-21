@@ -20,6 +20,7 @@ const Header = () => (
     </LogoContainer>
     <HeaderLinksContainer>
       <HeaderLink to="/shop">SHOP</HeaderLink>
+      <HeaderLink to='/contact'>CONTACT</HeaderLink>
       <HeaderLink to="/about-us">ABOUT US</HeaderLink>
     </HeaderLinksContainer>
     <SearchPanel />

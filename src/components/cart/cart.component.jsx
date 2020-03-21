@@ -5,8 +5,8 @@ import { ReactComponent as CartIcon } from "../../assets/cart.svg";
 
 const Cart = () => (
   <CartContainer>
-    <CartCounter>0</CartCounter>
-    <CartIcon className="cart-icon" />
+    <CartCounter>14</CartCounter>
+    <CartIcon className="cart-icon" title="Cart" />
   </CartContainer>
 );
 

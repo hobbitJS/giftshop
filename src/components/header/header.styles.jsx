@@ -31,4 +31,9 @@ export const HeaderLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;
   font-size: 18px;
+  transition: all .2s ease;
+
+  &:hover {
+    color: #d893a2;
+  }
 `;
