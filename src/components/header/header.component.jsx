@@ -6,7 +6,7 @@ import {
   HeaderContainer,
   LogoContainer,
   HeaderLinksContainer,
-  HeaderLink
+  HeaderLink,
 } from "./header.styles";
 
 import SearchPanel from "../search-panel/search-panel.component";
@@ -19,8 +19,7 @@ const Header = () => (
       <Logo className="logo" />
     </LogoContainer>
     <HeaderLinksContainer>
-      <HeaderLink to="/shop">SHOP</HeaderLink>
-      <HeaderLink to='/contact'>CONTACT</HeaderLink>
+      <HeaderLink to="/contact">CONTACT</HeaderLink>
       <HeaderLink to="/about-us">ABOUT US</HeaderLink>
     </HeaderLinksContainer>
     <SearchPanel />

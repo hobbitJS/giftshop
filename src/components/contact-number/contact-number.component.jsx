@@ -5,7 +5,7 @@ import { ReactComponent as PhoneIcon } from "../../assets/phone-call.svg";
 import {
   ContactNumberContainer,
   ContactPhoneCode,
-  ContactPhoneNumber
+  ContactPhoneNumber,
 } from "./contact-number.styles";
 
 const ContactNumber = () => (

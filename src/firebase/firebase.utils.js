@@ -10,7 +10,7 @@ const config = {
   storageBucket: "giftshop-db.appspot.com",
   messagingSenderId: "705414862069",
   appId: "1:705414862069:web:333355ca59d2a93ceae1bc",
-  measurementId: "G-63ZE2XLKVJ"
+  measurementId: "G-63ZE2XLKVJ",
 };
 
 firebase.initializeApp(config);

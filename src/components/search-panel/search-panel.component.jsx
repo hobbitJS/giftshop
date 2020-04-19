@@ -5,7 +5,7 @@ import loupe from "../../assets/loupe.svg";
 import {
   SearchPanelContainer,
   SearchPanelInput,
-  SearchPanelInputImage
+  SearchPanelInputImage,
 } from "./search-panel.styles";
 
 const SearchPanel = () => (

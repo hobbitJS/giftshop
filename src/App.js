@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Header from "./components/header/header.component";
 
 import Home from "./pages/home/home.component";
+import Category from "./pages/category/category.component";
 
 import "./App.css";
 
@@ -13,7 +14,8 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <Switch>
-          <Route path="/" exact render={Home} />
+          <Route path="/" exact component={Home} />
+          <Route path="/shop/:categoryName" component={Category} />
         </Switch>
       </div>
     );

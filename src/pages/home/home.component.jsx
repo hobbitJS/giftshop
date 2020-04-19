@@ -2,11 +2,11 @@ import React from "react";
 
 import { HomeContainer } from "./home.styles";
 
-import HomeBanner from "../../components/home-banner/home-banner.component";
+import HomeMenu from "../../components/home-menu/home-menu.component";
 
 const Home = () => (
   <HomeContainer>
-    <HomeBanner />
+    <HomeMenu />
   </HomeContainer>
 );
 

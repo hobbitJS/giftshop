@@ -10,8 +10,8 @@ export const SearchPanelContainer = styled.form`
   box-sizing: content-box;
 `;
 
-export const SearchPanelInput = styled.input.attrs(props => ({
-  type: "text"
+export const SearchPanelInput = styled.input.attrs((props) => ({
+  type: "text",
 }))`
   height: 100%;
   width: 95%;
