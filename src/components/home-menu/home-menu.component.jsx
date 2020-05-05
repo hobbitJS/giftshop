@@ -32,7 +32,14 @@ const HomeMenu = ({ history, match }) => {
             className="background-image"
           />
           <HomeMenuLink className="home-menu-link">
-            <CustomButton isText>{el.title}</CustomButton>
+            <CustomButton
+              isText
+              bgColor={`rgba(255, 255, 255, 0.8)`}
+              bgColorHover={`black`}
+              colorHover={`white`}
+            >
+              {el.title}
+            </CustomButton>
           </HomeMenuLink>
         </HomeMenuItem>
       ))}

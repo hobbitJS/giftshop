@@ -4,17 +4,17 @@ import { withRouter } from "react-router-dom";
 import noImg from "../../assets/no-product-image.jpg";
 
 import {
-  ProductItemContainer,
-  ProductItemImageContainer,
-  ProductItemImage,
-  ProductItemTitle,
-  ProductItemPriceContainer,
-  ProductItemPrice,
-} from "./product-item.styles";
+  ProductCardContainer,
+  ProductCardImageContainer,
+  ProductCardImage,
+  ProductCardTitle,
+  ProductCardPriceContainer,
+  ProductCardPrice,
+} from "./product-card.styles";
 
 import CustomButton from "../custom-button/custom-button.component";
 
-const ProductItem = ({ item, match, history }) => {
+const ProductCard = ({ item, match, history }) => {
   const computedPriceRange = (options) => {
     const standardPrices = [];
     const discountPrices = [];
@@ -42,38 +42,38 @@ const ProductItem = ({ item, match, history }) => {
     }
 
     return (
-      <ProductItemPriceContainer>
+      <ProductCardPriceContainer>
         {isOnSale ? (
-          <ProductItemPrice discount>
+          <ProductCardPrice discount>
             {convertRangeToStr(discountRange)} SALE
-          </ProductItemPrice>
+          </ProductCardPrice>
         ) : (
-          <ProductItemPrice standard>
+          <ProductCardPrice standard>
             {convertRangeToStr(standardRange)}
-          </ProductItemPrice>
+          </ProductCardPrice>
         )}
 
         {isOnSale ? (
-          <ProductItemPrice old>
+          <ProductCardPrice old>
             {convertRangeToStr(standardRange)}
-          </ProductItemPrice>
+          </ProductCardPrice>
         ) : null}
-      </ProductItemPriceContainer>
+      </ProductCardPriceContainer>
     );
   };
 
   const { image, title, options, id } = item;
 
   return (
-    <ProductItemContainer onClick={() => history.push(`${match.url}/${id}`)}>
-      <ProductItemImageContainer>
-        <ProductItemImage src={image ? image : noImg} alt={title} />
+    <ProductCardContainer onClick={() => history.push(`${match.url}/${id}`)}>
+      <ProductCardImageContainer>
+        <ProductCardImage src={image ? image : noImg} alt={title} />
         <CustomButton isIcon addToCartImg isAbsolute title="Add to Cart" />
-      </ProductItemImageContainer>
-      <ProductItemTitle>{title}</ProductItemTitle>
+      </ProductCardImageContainer>
+      <ProductCardTitle>{title}</ProductCardTitle>
       {computedPriceRange(options)}
-    </ProductItemContainer>
+    </ProductCardContainer>
   );
 };
 
-export default withRouter(ProductItem);
+export default withRouter(ProductCard);

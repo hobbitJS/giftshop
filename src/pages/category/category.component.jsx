@@ -12,9 +12,10 @@ import {
   selectIsCategoryLoaded,
 } from "../../redux/category/category.selectors";
 
-import { CategoryContainer } from "./category.styles";
-import ProductItem from "../../components/product-item/product-item.component";
+import { CategoryPageContainer, CategoryContainer } from "./category.styles";
+import ProductCard from "../../components/product-card/product-card.component";
 import LoadingOverlay from "../../components/loading-overlay/loading-overlay.component";
+import Product from "../../pages/product/product.component";
 
 const Category = ({
   match,
@@ -30,19 +31,18 @@ const Category = ({
   }, [fetchCategoryStart, categoryName]);
 
   return (
-    <CategoryContainer>
-      <Route exact path={`${match.path}`}>
-        {isLoaded === false || isFetching === true ? (
-          <LoadingOverlay />
-        ) : (
-          itemsFromCategory.map((el) => <ProductItem item={el} key={el.id} />)
-        )}
-      </Route>
-      <Route
-        path={`${match.url}/:productItemId`}
-        render={() => <div>sasa</div>}
-      />
-    </CategoryContainer>
+    <CategoryPageContainer>
+      <CategoryContainer>
+        <Route exact path={`${match.path}`}>
+          {isLoaded === false || isFetching === true ? (
+            <LoadingOverlay />
+          ) : (
+            itemsFromCategory.map((el) => <ProductCard item={el} key={el.id} />)
+          )}
+        </Route>
+      </CategoryContainer>
+      <Route path={`${match.url}/:productItemId`} component={Product} />
+    </CategoryPageContainer>
   );
 };
 

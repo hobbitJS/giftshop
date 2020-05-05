@@ -7,27 +7,20 @@ const buttonStyles = css`
   justify-content: center;
   align-items: center;
   height: 50px;
-  background-color: rgba(255, 255, 255, 0.8);
   border: none;
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 `;
 
 const textStyles = css`
-  max-width: 200px;
-  width: auto;
-  color: black;
+  width: ${({ width }) => (width ? `${width}` : "auto")};
+  color: ${({ color }) => (color ? `${color}` : "black")};
   line-height: 50px;
   padding: 0 35px;
   font-size: 15px;
   text-transform: uppercase;
   font-family: "Raleway", sans-serif;
   font-weight: bolder;
-
-  &:hover {
-    background-color: black;
-    color: white;
-  }
 `;
 
 const iconStyles = css`
@@ -47,14 +40,21 @@ const addToCartImage = css`
   background-image: ${`url(${cart})`};
 `;
 
-const isAbsolute = css`
+const isAbsoluteStyles = css`
   position: absolute;
 `;
 
 export const CustomButtonContainer = styled.button`
   ${buttonStyles}
-  ${(props) => (props.isText ? textStyles : "")}
-  ${(props) => (props.isIcon ? iconStyles : "")}
-  ${(props) => (props.addToCartImg ? addToCartImage : "")}
-  ${(props) => (props.isAbsolute ? isAbsolute : "")}
+  ${({ isText }) => (isText ? textStyles : "")}
+  ${({ isIcon }) => (isIcon ? iconStyles : "")}
+  ${({ addToCartImg }) => (addToCartImg ? addToCartImage : "")}
+  ${({ isAbsolute }) => (isAbsolute ? isAbsoluteStyles : "")}
+  background-color: ${({ bgColor }) => (bgColor ? `${bgColor}` : "")};
+
+  &:hover {
+    color: ${({ colorHover }) => (colorHover ? `${colorHover}` : "")};
+    background-color: ${({ bgColorHover }) =>
+      bgColorHover ? `${bgColorHover}` : ""}
+  }
 `;

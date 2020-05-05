@@ -3,7 +3,7 @@ import CategoryActionTypes from "./category.types";
 const INITIAL_STATE = {
   itemsFromCategory: null,
   isFetching: false,
-  errorMessage: undefined,
+  error: undefined,
 };
 
 const categoryReducer = (state = INITIAL_STATE, action) => {
@@ -25,7 +25,7 @@ const categoryReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetching: false,
-        errorMessage: action.payload,
+        error: action.payload,
       };
 
     default:

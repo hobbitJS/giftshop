@@ -10,7 +10,7 @@ export const fetchCategorySuccess = (itemsFromCategory) => ({
   payload: itemsFromCategory,
 });
 
-export const fetchCategoryFailure = (errorMessage) => ({
+export const fetchCategoryFailure = (error) => ({
   type: CategoryActionTypes.FETCH_CATEGORY_FAILURE,
-  payload: errorMessage,
+  payload: error,
 });

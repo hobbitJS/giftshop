@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components";
 
-export const ProductItemContainer = styled.div`
+export const ProductCardContainer = styled.div`
   width: calc(25% - 9px);
   margin: 10px 0;
   cursor: pointer;
 `;
 
-export const ProductItemImageContainer = styled.div`
+export const ProductCardImageContainer = styled.div`
   width: 100%;
   height: 75%;
   position: relative;
@@ -17,17 +17,17 @@ export const ProductItemImageContainer = styled.div`
   }
 `;
 
-export const ProductItemImage = styled.img`
+export const ProductCardImage = styled.img`
   width: 100%;
   height: 100%;
 `;
 
-export const ProductItemTitle = styled.span`
+export const ProductCardTitle = styled.span`
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
 `;
 
-export const ProductItemPriceContainer = styled.div`
+export const ProductCardPriceContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
@@ -41,7 +41,7 @@ const oldStyles = css`
   font-size: 15px;
 `;
 
-export const ProductItemPrice = styled.span`
+export const ProductCardPrice = styled.span`
   font-size: 16px;
   font-family: "Open Sans", sans-serif;
   font-weight: bold;
