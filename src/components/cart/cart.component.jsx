@@ -1,13 +1,42 @@
 import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
-import { CartContainer, CartCounter } from "./cart.styles";
+import {
+  selectCartItems,
+  selectCartItemsCount,
+  selectIsHidden,
+} from "../../redux/cart/cart.selectors";
+
+import {
+  CartContainer,
+  CartIconContainer,
+  CartCounter,
+  CartItemsContainer,
+  CartItem,
+} from "./cart.styles";
 import { ReactComponent as CartIcon } from "../../assets/cart.svg";
 
-const Cart = () => (
+const Cart = ({ cartItems, cartItemsCount, isHidden }) => (
   <CartContainer>
-    <CartCounter>14</CartCounter>
-    <CartIcon className="cart-icon" title="Cart" />
+    <CartIconContainer>
+      <CartCounter>{cartItemsCount}</CartCounter>
+      <CartIcon className="cart-icon" title="Cart" />
+    </CartIconContainer>
+    {!isHidden ? (
+      <CartItemsContainer>
+        {cartItems.map((el) => (
+          <CartItem>{el.title}</CartItem>
+        ))}
+      </CartItemsContainer>
+    ) : null}
   </CartContainer>
 );
 
-export default Cart;
+const mapStateToProps = createStructuredSelector({
+  cartItems: selectCartItems,
+  cartItemsCount: selectCartItemsCount,
+  isHidden: selectIsHidden,
+});
+
+export default connect(mapStateToProps)(Cart);

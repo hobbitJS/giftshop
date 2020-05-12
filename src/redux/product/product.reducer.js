@@ -10,6 +10,7 @@ const INITIAL_STATE = {
     selectedProductIcon: null,
     selectedOptionDetails: null,
     stems: null,
+    cardImage: null,
   },
   isFetching: false,
   error: undefined,
@@ -26,7 +27,14 @@ const productReducer = (state = INITIAL_STATE, action) => {
       };
 
     case ProductActionTypes.FETCH_PRODUCT_SUCCESS:
-      const { id, title, defaultOption, options, stems } = action.payload;
+      const {
+        id,
+        title,
+        defaultOption,
+        options,
+        stems,
+        image,
+      } = action.payload;
 
       return {
         ...state,
@@ -39,6 +47,7 @@ const productReducer = (state = INITIAL_STATE, action) => {
           selectedProductIcon: 0,
           selectedOptionDetails: options[defaultOption].details,
           stems,
+          cardImage: image,
         },
         isFetching: false,
       };

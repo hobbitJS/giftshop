@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const CartContainer = styled.div`
+  position: relative;
+`;
+
+export const CartIconContainer = styled.div`
   width: 30px;
   height: 30px;
   position: relative;
@@ -23,3 +27,15 @@ export const CartCounter = styled.div`
   font-size: 12px;
   color: black;
 `;
+
+export const CartItemsContainer = styled.div`
+  position: absolute;
+  top: 30px;
+  right: -10px;
+  height: 200px;
+  width: 200px;
+  background-color: white;
+  z-index: 299;
+`;
+
+export const CartItem = styled.div``;
