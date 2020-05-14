@@ -36,7 +36,7 @@ import {
   ProductDetailsSection,
 } from "./product.styles";
 
-import { addItemToCart } from "../../redux/cart/cart.actions";
+import { addItem } from "../../redux/cart/cart.actions";
 
 const Product = ({
   match,
@@ -47,7 +47,7 @@ const Product = ({
   selectOption,
   selectBackgroundImage,
   selectProductIcon,
-  addToCart,
+  addItemToCart,
 }) => {
   const productId = match.params.productItemId;
   const category = match.url.split("/")[2];
@@ -129,7 +129,7 @@ const Product = ({
                   color={`white`}
                   bgColor={`black`}
                   bgColorHover={`rgba(142,115,41,1)`}
-                  onClick={() => addToCart(item)}
+                  onClick={() => addItemToCart(item)}
                 >
                   Add To Cart
                 </CustomButton>
@@ -164,7 +164,7 @@ const mapDispatchToProps = (dispatch) => ({
   selectBackgroundImage: (background) =>
     dispatch(selectBackgroundImage(background)),
   selectProductIcon: (icon) => dispatch(selectProductIcon(icon)),
-  addToCart: (item) => dispatch(addItemToCart(item)),
+  addItemToCart: (item) => dispatch(addItem(item)),
 });
 
 export default connect(

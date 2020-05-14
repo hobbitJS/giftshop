@@ -51,7 +51,7 @@ export const CustomButtonContainer = styled.button`
   ${({ addToCartImg }) => (addToCartImg ? addToCartImage : "")}
   ${({ isAbsolute }) => (isAbsolute ? isAbsoluteStyles : "")}
   background-color: ${({ bgColor }) => (bgColor ? `${bgColor}` : "")};
-
+  
   &:hover {
     color: ${({ colorHover }) => (colorHover ? `${colorHover}` : "")};
     background-color: ${({ bgColorHover }) =>

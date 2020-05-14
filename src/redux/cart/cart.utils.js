@@ -1,5 +1,5 @@
-export const addItemToCart = (cartItems, cartItemToAdd) => {
-  const { id, title, options, selectedOption, cardImage } = cartItemToAdd;
+export const addItem = (cartItems, cartItemToAdd) => {
+  const { id, title, options, selectedOption } = cartItemToAdd;
 
   const existingCartItem = cartItems.find(
     (cartItem) =>
@@ -21,10 +21,21 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
     id,
     title,
     selectedOption: options[selectedOption],
-    cardImage,
+    image: options[selectedOption].images.small[0],
     quantity: 1,
   };
 
   console.log(itemToAdd, cartItemToAdd);
   return [...cartItems, itemToAdd];
+};
+
+export const removeItem = () => {};
+
+export const clearItem = (cartItems, itemToClear) => {
+  const { id, attribute } = itemToClear;
+
+  return cartItems.filter(
+    (cartItem) =>
+      cartItem.id !== id || cartItem.selectedOption.attribute !== attribute
+  );
 };

@@ -9,6 +9,7 @@ export const CustomTextSpanContainer = styled.span`
   font-weight: ${({ weight }) => (weight ? `${weight}` : "")};
   text-transform: ${({ transform }) => (transform ? `${transform}` : "")};
   margin: ${({ margin }) => (margin ? `${margin}` : "")};
+  background-color: ${({ bgColor }) => (bgColor ? `${bgColor}` : "")};
   color: ${({ color }) => (color ? `${color}` : `black`)};
   cursor: ${({ cursor }) => (cursor ? `${cursor}` : `default`)};
 `;
