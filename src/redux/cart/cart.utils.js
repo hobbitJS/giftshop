@@ -1,5 +1,5 @@
 export const addItem = (cartItems, cartItemToAdd) => {
-  const { id, title, options, selectedOption } = cartItemToAdd;
+  const { id, title, options, selectedOption, category } = cartItemToAdd;
 
   const existingCartItem = cartItems.find(
     (cartItem) =>
@@ -23,9 +23,9 @@ export const addItem = (cartItems, cartItemToAdd) => {
     selectedOption: options[selectedOption],
     image: options[selectedOption].images.small[0],
     quantity: 1,
+    category,
   };
 
-  console.log(itemToAdd, cartItemToAdd);
   return [...cartItems, itemToAdd];
 };
 

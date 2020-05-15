@@ -5,6 +5,7 @@ import { addItem, clearItem } from "./cart.utils";
 const INITIAL_STATE = {
   cartItems: [],
   isHidden: true,
+  isHiddenAddItemMessage: true,
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -36,12 +37,23 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         isHidden: false,
       };
 
-    case CartActionTypes.HIDE_CART: {
+    case CartActionTypes.HIDE_CART:
       return {
         ...state,
         isHidden: true,
       };
-    }
+
+    case CartActionTypes.SHOW_ADD_ITEM_MESSAGE:
+      return {
+        ...state,
+        isHiddenAddItemMessage: false,
+      };
+
+    case CartActionTypes.HIDE_ADD_ITEM_MESSAGE:
+      return {
+        ...state,
+        isHiddenAddItemMessage: true,
+      };
 
     default:
       return state;

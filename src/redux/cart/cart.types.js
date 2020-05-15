@@ -5,6 +5,8 @@ const CartActionTypes = {
   CLEAR_ITEMS: "CLEAR_ITEMS",
   SHOW_CART: "SHOW_CART",
   HIDE_CART: "HIDE_CART",
+  SHOW_ADD_ITEM_MESSAGE: "SHOW_ADD_ITEM_MESSAGE",
+  HIDE_ADD_ITEM_MESSAGE: "HIDE_ADD_ITEM_MESSAGE",
 };
 
 export default CartActionTypes;
