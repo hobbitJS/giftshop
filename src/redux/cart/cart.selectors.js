@@ -14,10 +14,25 @@ export const selectIsHidden = createSelector(
 
 export const selectCartItemsCount = createSelector(
   [selectCartItems],
-  (cartItems) => cartItems.reduce((acc, el) => acc + el.quantity, 0)
+  (cartItems) => cartItems.reduce((acc, item) => acc + item.quantity, 0)
 );
 
 export const selectIsHiddenAddMessage = createSelector(
   [selectCart],
   (cart) => cart.isHiddenAddItemMessage
+);
+
+export const selectIsHiddenTriangle = createSelector(
+  [selectCart],
+  (cart) => cart.isHiddenTriangle
+);
+
+export const selectSubtotal = createSelector([selectCartItems], (cartItems) =>
+  cartItems.reduce((acc, item) => {
+    const {
+      quantity,
+      selectedOption: { price, discountPrice },
+    } = item;
+    return acc + quantity * (price > discountPrice ? discountPrice : price);
+  }, 0)
 );

@@ -25,3 +25,11 @@ export const showAddItemMessage = () => ({
 export const hideAddItemMessage = () => ({
   type: CartActionTypes.HIDE_ADD_ITEM_MESSAGE,
 });
+
+export const showTriangle = () => ({
+  type: CartActionTypes.SHOW_TRIANGLE,
+});
+
+export const hideTriangle = () => ({
+  type: CartActionTypes.HIDE_TRIANGLE,
+});

@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   cartItems: [],
   isHidden: true,
   isHiddenAddItemMessage: true,
+  isHiddenTriangle: true,
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -53,6 +54,18 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isHiddenAddItemMessage: true,
+      };
+
+    case CartActionTypes.SHOW_TRIANGLE:
+      return {
+        ...state,
+        isHiddenTriangle: false,
+      };
+
+    case CartActionTypes.HIDE_TRIANGLE:
+      return {
+        ...state,
+        isHiddenTriangle: true,
       };
 
     default:

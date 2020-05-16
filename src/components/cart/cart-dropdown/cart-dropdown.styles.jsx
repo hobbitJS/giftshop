@@ -5,7 +5,7 @@ export const CartDropdownContainer = styled.div`
   flex-flow: column;
   align-items: center;
   position: absolute;
-  top: 30px;
+  top: 50px;
   right: -10px;
   min-height: 44px;
   min-width: 335px;
@@ -26,6 +26,8 @@ export const CartDropdownHeader = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-height: 42px;
+  max-height: 74px;
 `;
 
 export const CartDropdownSubheader = styled.div`
@@ -51,6 +53,7 @@ export const AddItemMessageContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+  height: 32px;
   background-color: rgba(134, 252, 140, 0.4);
   padding: 0 10px;
 
@@ -63,5 +66,20 @@ export const AddItemMessageContainer = styled.div`
     width: 16px;
     height: 16px;
     margin-right: 10px;
+  }
+`;
+
+export const CartSubtotalContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 35px;
+  padding: 5px 10px;
+  background-color: rgba(227, 227, 227, 0.8);
+  align-items: center;
+
+  span {
+    font-size: 18px;
+    font-weight: bold;
   }
 `;

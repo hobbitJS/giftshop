@@ -36,7 +36,11 @@ import {
   ProductDetailsSection,
 } from "./product.styles";
 
-import { addItem, showAddItemMessage } from "../../redux/cart/cart.actions";
+import {
+  addItem,
+  showAddItemMessage,
+  showCart,
+} from "../../redux/cart/cart.actions";
 
 const Product = ({
   match,
@@ -48,6 +52,7 @@ const Product = ({
   selectBackgroundImage,
   selectProductIcon,
   addItemToCart,
+  showCart,
   showAddItemMessage,
 }) => {
   const category = match.url.split("/")[2];
@@ -132,6 +137,7 @@ const Product = ({
                   bgColorHover={`rgba(142,115,41,1)`}
                   onClick={() => {
                     addItemToCart(item, category);
+                    showCart();
                     showAddItemMessage();
                   }}
                 >
@@ -169,6 +175,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(selectBackgroundImage(background)),
   selectProductIcon: (icon) => dispatch(selectProductIcon(icon)),
   addItemToCart: (item, category) => dispatch(addItem(item, category)),
+  showCart: () => dispatch(showCart()),
   showAddItemMessage: () => dispatch(showAddItemMessage()),
 });
 

@@ -3,11 +3,18 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
 
-import { hideCart, hideAddItemMessage } from "../../../redux/cart/cart.actions";
+import {
+  hideCart,
+  hideAddItemMessage,
+  hideTriangle,
+  showTriangle,
+} from "../../../redux/cart/cart.actions";
 
 import {
   selectCartItemsCount,
   selectIsHiddenAddMessage,
+  selectSubtotal,
+  selectIsHiddenTriangle,
 } from "../../../redux/cart/cart.selectors";
 
 import {
@@ -15,6 +22,7 @@ import {
   CartDropdownHeader,
   CartDropdownSubheader,
   AddItemMessageContainer,
+  CartSubtotalContainer,
 } from "./cart-dropdown.styles";
 
 import CartItem from "../cart-item/cart-item.component";
@@ -27,13 +35,27 @@ import CustomButton from "../../custom-button/custom-button.component";
 
 class CartDropdown extends React.Component {
   componentWillUnmount() {
-    this.props.hideAddItemMessage();
+    const { isHiddenMessage, hideAddItemMessage } = this.props;
+
+    if (!isHiddenMessage) hideAddItemMessage();
   }
 
   render() {
-    const { cartItems, count, isHiddenMessage, hideCart } = this.props;
+    const {
+      cartItems,
+      count,
+      isHiddenMessage,
+      subtotal,
+      hideCart,
+      isHiddenTriangle,
+      showTriangle,
+      hideTriangle,
+    } = this.props;
     return (
-      <CartDropdownContainer>
+      <CartDropdownContainer
+        onMouseOver={() => (isHiddenTriangle ? showTriangle() : "")}
+        onMouseLeave={() => hideTriangle()}
+      >
         <CartDropdownHeader>
           <CartDropdownSubheader>
             <CustomTextSpan>
@@ -44,7 +66,12 @@ class CartDropdown extends React.Component {
                 ? `${count} items`
                 : `1 item`}
             </CustomTextSpan>
-            <XButton onClick={() => hideCart()} />
+            <XButton
+              onClick={() => {
+                hideTriangle();
+                hideCart();
+              }}
+            />
           </CartDropdownSubheader>
           {!isHiddenMessage ? (
             <AddItemMessageContainer>
@@ -57,8 +84,11 @@ class CartDropdown extends React.Component {
         {cartItems.map((cartItem, idx) => (
           <CartItem item={cartItem} key={idx} />
         ))}
-        {/*SUBTOTAL*/}
 
+        <CartSubtotalContainer>
+          <CustomTextSpan text={`Sub-total`} />
+          <CustomTextSpan text={`$${subtotal}`} />
+        </CartSubtotalContainer>
         {count > 0 ? (
           <CustomButton
             isText
@@ -77,12 +107,16 @@ class CartDropdown extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   count: selectCartItemsCount,
+  isHiddenTriangle: selectIsHiddenTriangle,
   isHiddenMessage: selectIsHiddenAddMessage,
+  subtotal: selectSubtotal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   hideCart: () => dispatch(hideCart()),
   hideAddItemMessage: () => dispatch(hideAddItemMessage()),
+  showTriangle: () => dispatch(showTriangle()),
+  hideTriangle: () => dispatch(hideTriangle()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartDropdown);

@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+export const HeaderLayoutContainer = styled.div`
+  width: 100%;
+  background-color: white;
+  z-index: 300;
+`;
+
 export const HeaderContainer = styled.div`
   height: 70px;
   max-width: 1110px;
