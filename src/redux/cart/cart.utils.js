@@ -39,3 +39,28 @@ export const clearItem = (cartItems, itemToClear) => {
       cartItem.id !== id || cartItem.selectedOption.attribute !== attribute
   );
 };
+
+// hide/show cart-dropdown
+
+const getHeight = (component) => {
+  return parseFloat(getComputedStyle(component).height);
+};
+
+export const hideCartDropdown = () => {
+  const header = document.querySelector("#header");
+  const cartDropdown = document.querySelector("#cart-dropdown");
+
+  const headerHeight = getHeight(header);
+  const cartDropdownHeight = getHeight(cartDropdown);
+
+  cartDropdown.style.top = `${headerHeight - cartDropdownHeight}px`;
+};
+
+export const showCartDropdown = () => {
+  const header = document.querySelector("#header");
+  const cartDropdown = document.querySelector("#cart-dropdown");
+
+  const headerHeight = getHeight(header);
+  cartDropdown.style.opacity = 1;
+  cartDropdown.style.top = `${headerHeight}px`;
+};

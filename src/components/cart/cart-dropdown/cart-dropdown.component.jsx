@@ -8,6 +8,7 @@ import {
   hideAddItemMessage,
   hideTriangle,
   showTriangle,
+  showCart,
 } from "../../../redux/cart/cart.actions";
 
 import {
@@ -15,6 +16,7 @@ import {
   selectIsHiddenAddMessage,
   selectSubtotal,
   selectIsHiddenTriangle,
+  selectIsHidden,
 } from "../../../redux/cart/cart.selectors";
 
 import {
@@ -33,11 +35,28 @@ import { ReactComponent as Check } from "../../../assets/check.svg";
 import CustomTextSpan from "../../custom-text-span/custom-text-span.component";
 import CustomButton from "../../custom-button/custom-button.component";
 
-class CartDropdown extends React.Component {
-  componentWillUnmount() {
-    const { isHiddenMessage, hideAddItemMessage } = this.props;
+import {
+  showCartDropdown,
+  hideCartDropdown,
+} from "../../../redux/cart/cart.utils";
 
-    if (!isHiddenMessage) hideAddItemMessage();
+class CartDropdown extends React.Component {
+  componentCleanup = () => {
+    const { hideTriangle } = this.props;
+
+    hideTriangle();
+  };
+
+  componentDidMount() {
+    hideCartDropdown();
+
+    window.addEventListener("beforeunload", this.componentCleanup);
+  }
+
+  componentWillUnmount() {
+    this.componentCleanup();
+
+    window.removeEventListener("beforeunload", this.componentCleanup);
   }
 
   render() {
@@ -46,15 +65,26 @@ class CartDropdown extends React.Component {
       count,
       isHiddenMessage,
       subtotal,
-      hideCart,
-      isHiddenTriangle,
+      hideCartAction,
+      hideAddItemMessage,
       showTriangle,
       hideTriangle,
+      showCartAction,
     } = this.props;
     return (
       <CartDropdownContainer
-        onMouseOver={() => (isHiddenTriangle ? showTriangle() : "")}
-        onMouseLeave={() => hideTriangle()}
+        id="cart-dropdown"
+        onMouseEnter={() => {
+          showTriangle();
+          showCartAction();
+          showCartDropdown();
+        }}
+        onMouseLeave={() => {
+          hideTriangle();
+          hideAddItemMessage();
+          hideCartAction();
+          hideCartDropdown();
+        }}
       >
         <CartDropdownHeader>
           <CartDropdownSubheader>
@@ -69,7 +99,9 @@ class CartDropdown extends React.Component {
             <XButton
               onClick={() => {
                 hideTriangle();
-                hideCart();
+                hideAddItemMessage();
+                hideCartAction();
+                hideCartDropdown();
               }}
             />
           </CartDropdownSubheader>
@@ -96,6 +128,12 @@ class CartDropdown extends React.Component {
             color={`white`}
             bgColor={`black`}
             bgColorHover={`rgba(142,115,41,1)`}
+            onClick={() => {
+              hideTriangle();
+              hideAddItemMessage();
+              hideCartAction();
+              hideCartDropdown();
+            }}
           >
             <Link to="/checkout">GO TO CHECKOUT</Link>
           </CustomButton>
@@ -107,13 +145,15 @@ class CartDropdown extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   count: selectCartItemsCount,
+  isHidden: selectIsHidden,
   isHiddenTriangle: selectIsHiddenTriangle,
   isHiddenMessage: selectIsHiddenAddMessage,
   subtotal: selectSubtotal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  hideCart: () => dispatch(hideCart()),
+  showCartAction: () => dispatch(showCart()),
+  hideCartAction: () => dispatch(hideCart()),
   hideAddItemMessage: () => dispatch(hideAddItemMessage()),
   showTriangle: () => dispatch(showTriangle()),
   hideTriangle: () => dispatch(hideTriangle()),

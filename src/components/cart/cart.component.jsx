@@ -25,6 +25,11 @@ import {
 
 import { ReactComponent as CartIcon } from "../../assets/cart.svg";
 
+import {
+  showCartDropdown,
+  hideCartDropdown,
+} from "../../redux/cart/cart.utils";
+
 import CartDropdown from "./cart-dropdown/cart-dropdown.component";
 
 const Cart = ({
@@ -32,8 +37,8 @@ const Cart = ({
   count,
   isHidden,
   isHiddenTriangle,
-  showCart,
-  hideCart,
+  showCartAction,
+  hideCartAction,
   showTriangle,
   hideTriangle,
 }) => {
@@ -41,11 +46,15 @@ const Cart = ({
     <CartContainer>
       <CartIconContainer
         onMouseOver={() => {
+          if (!isHidden) return;
           if (isHiddenTriangle) showTriangle();
-          return isHidden ? showCart() : null;
+          showCartAction();
+          showCartDropdown();
         }}
         onMouseLeave={() => {
           hideTriangle();
+          hideCartAction();
+          hideCartDropdown();
         }}
       >
         <CartCounter>{count}</CartCounter>
@@ -53,8 +62,16 @@ const Cart = ({
       </CartIconContainer>
 
       <TriangleContainer
-        onMouseOver={() => (isHiddenTriangle ? showTriangle() : null)}
-        onMouseLeave={() => hideTriangle()}
+        onMouseOver={() => {
+          if (isHiddenTriangle) showTriangle();
+          showCartAction();
+          showCartDropdown();
+        }}
+        onMouseLeave={() => {
+          hideTriangle();
+          hideCartAction();
+          hideCartDropdown();
+        }}
       >
         <div
           className={`cart-triangle ${
@@ -63,7 +80,7 @@ const Cart = ({
         ></div>
       </TriangleContainer>
 
-      {!isHidden ? <CartDropdown cartItems={items} /> : null}
+      {/* {!isHidden ? <CartDropdown cartItems={items} /> : null} */}
     </CartContainer>
   );
 };
@@ -76,8 +93,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  showCart: () => dispatch(showCart()),
-  hideCart: () => dispatch(hideCart()),
+  showCartAction: () => dispatch(showCart()),
+  hideCartAction: () => dispatch(hideCart()),
   showTriangle: () => dispatch(showTriangle()),
   hideTriangle: () => dispatch(hideTriangle()),
 });

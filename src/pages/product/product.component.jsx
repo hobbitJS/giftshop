@@ -40,7 +40,10 @@ import {
   addItem,
   showAddItemMessage,
   showCart,
+  showTriangle,
 } from "../../redux/cart/cart.actions";
+
+import { showCartDropdown } from "../../redux/cart/cart.utils";
 
 const Product = ({
   match,
@@ -52,8 +55,9 @@ const Product = ({
   selectBackgroundImage,
   selectProductIcon,
   addItemToCart,
-  showCart,
+  showCartAction,
   showAddItemMessage,
+  showTriangle,
 }) => {
   const category = match.url.split("/")[2];
   const productId = match.url.split("/")[3];
@@ -137,7 +141,9 @@ const Product = ({
                   bgColorHover={`rgba(142,115,41,1)`}
                   onClick={() => {
                     addItemToCart(item, category);
-                    showCart();
+                    showTriangle();
+                    showCartAction();
+                    showCartDropdown();
                     showAddItemMessage();
                   }}
                 >
@@ -175,8 +181,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(selectBackgroundImage(background)),
   selectProductIcon: (icon) => dispatch(selectProductIcon(icon)),
   addItemToCart: (item, category) => dispatch(addItem(item, category)),
-  showCart: () => dispatch(showCart()),
+  showCartAction: () => dispatch(showCart()),
   showAddItemMessage: () => dispatch(showAddItemMessage()),
+  showTriangle: () => dispatch(showTriangle()),
 });
 
 export default connect(

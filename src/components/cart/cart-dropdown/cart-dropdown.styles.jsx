@@ -4,14 +4,16 @@ export const CartDropdownContainer = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  position: absolute;
-  top: 50px;
-  right: -10px;
   min-height: 44px;
   min-width: 335px;
+  position: absolute;
+  top: 90px;
+  right: 0;
   background-color: white;
   border: 1px solid lightgrey;
-  z-index: 299;
+  opacity: 0; /* initial */
+  z-index: -1;
+  transition: all 1s ease;
 
   button {
     margin: 10px;
@@ -31,6 +33,7 @@ export const CartDropdownHeader = styled.div`
 `;
 
 export const CartDropdownSubheader = styled.div`
+  height: 42px;
   display: flex;
   justify-content: space-between;
   align-items: center;

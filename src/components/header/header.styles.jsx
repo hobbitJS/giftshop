@@ -2,19 +2,30 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const HeaderLayoutContainer = styled.div`
+  height: 90px;
   width: 100%;
-  background-color: white;
+  position: absolute;
+  top: 0;
   z-index: 300;
 `;
 
 export const HeaderContainer = styled.div`
-  height: 70px;
+  height: 100%;
   max-width: 1110px;
   margin: 0 auto;
+  padding: 20px 0 0 0;
+  position: relative;
+  background-color: white;
+`;
+
+export const NavContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 25px;
+  z-index: 300;
 `;
 
 export const LogoContainer = styled(Link)`

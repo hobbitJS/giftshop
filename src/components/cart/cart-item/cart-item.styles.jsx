@@ -15,7 +15,7 @@ export const CartItemImage = styled.div`
 `;
 
 export const CartItemDetails = styled.div`
-  width: 165px;
+  width: 170px;
   display: flex;
   flex-flow: column;
   justify-content: center;
