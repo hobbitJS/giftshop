@@ -22,6 +22,7 @@ export const addItem = (cartItems, cartItemToAdd) => {
     title,
     selectedOption: options[selectedOption],
     image: options[selectedOption].images.small[0],
+
     quantity: 1,
     category,
   };

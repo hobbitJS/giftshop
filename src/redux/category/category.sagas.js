@@ -2,9 +2,9 @@ import { takeLatest, call, put, all } from "redux-saga/effects";
 
 import { firestore } from "../../firebase/firebase.utils";
 
-import { fetchCategorySuccess, fetchCategoryFailure } from "./category.actions";
-
 import CategoryActionTypes from "./category.types";
+
+import { fetchCategorySuccess, fetchCategoryFailure } from "./category.actions";
 
 export function* fetchCategoryAsync(category) {
   try {
