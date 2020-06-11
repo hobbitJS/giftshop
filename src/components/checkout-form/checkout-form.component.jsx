@@ -5,6 +5,7 @@ import { createStructuredSelector } from "reselect";
 import {
   updateCheckoutFormField,
   setOrderStart,
+  showCheckoutModal,
 } from "../../redux/checkout/checkout.actions";
 
 import { selectCheckoutFormData } from "../../redux/checkout/checkout.selectors";
@@ -21,7 +22,13 @@ import {
 import CustomTextSpan from "../custom-text-span/custom-text-span.component";
 import CustomButton from "../custom-button/custom-button.component";
 
-const CheckoutForm = ({ cartItems, formData, updateField, setOrderStart }) => {
+const CheckoutForm = ({
+  cartItems,
+  formData,
+  updateField,
+  setOrderStart,
+  showCheckoutModal,
+}) => {
   const inputs = [
     { inputName: "name", inputExample: "ex: Stanciu Vasile" },
     { inputName: "email", inputExample: "ex: vasile@gmail.com" },
@@ -59,7 +66,10 @@ const CheckoutForm = ({ cartItems, formData, updateField, setOrderStart }) => {
         color="white"
         bgColor="black"
         bgColorHover="rgba(142,115,41,1)"
-        onClick={() => setOrderStart({ formData, cartItems })}
+        onClick={() => {
+          setOrderStart({ formData, cartItems });
+          showCheckoutModal();
+        }}
       >
         Complete the order
       </CustomButton>
@@ -76,6 +86,7 @@ const mapDispatchToProps = (dispatch) => ({
   updateField: (field, value) =>
     dispatch(updateCheckoutFormField(field, value)),
   setOrderStart: (data) => dispatch(setOrderStart(data)),
+  showCheckoutModal: () => dispatch(showCheckoutModal()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutForm);

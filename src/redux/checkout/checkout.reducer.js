@@ -9,6 +9,7 @@ const INITIAL_STATE = {
   },
   error: null,
   isLoading: false,
+  showCheckoutModal: false,
 };
 
 const checkoutReducer = (state = INITIAL_STATE, action) => {
@@ -45,6 +46,18 @@ const checkoutReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+
+    case CheckoutActionTypes.SHOW_CHECKOUT_MODAL:
+      return {
+        ...state,
+        showCheckoutModal: true,
+      };
+
+    case CheckoutActionTypes.HIDE_CHECKOUT_MODAL:
+      return {
+        ...state,
+        showCheckoutModal: false,
       };
 
     default:

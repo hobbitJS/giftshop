@@ -10,6 +10,10 @@ export const clearItem = (itemToClear) => ({
   payload: itemToClear,
 });
 
+export const clearItems = () => ({
+  type: CartActionTypes.CLEAR_ITEMS,
+});
+
 export const showCart = () => ({
   type: CartActionTypes.SHOW_CART,
 });

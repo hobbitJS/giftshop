@@ -29,7 +29,7 @@ export function* setOrderAsync(data) {
       status: "new",
     };
 
-    const orderRef = firestore.collection("orders");
+    const orderRef = yield firestore.collection("orders");
     yield orderRef.doc().set(order);
 
     yield put(setOrderSuccess());

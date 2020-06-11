@@ -22,3 +22,11 @@ export const setOrderFailure = (error) => ({
   type: CheckoutActionTypes.SET_ORDER_FAILURE,
   payload: error,
 });
+
+export const showCheckoutModal = () => ({
+  type: CheckoutActionTypes.SHOW_CHECKOUT_MODAL,
+});
+
+export const hideCheckoutModal = () => ({
+  type: CheckoutActionTypes.HIDE_CHECKOUT_MODAL,
+});
