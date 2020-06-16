@@ -10,7 +10,10 @@ import {
   CheckoutItemsHeaderBlock,
 } from "./checkout.styles";
 
-import { selectCartItems } from "../../redux/cart/cart.selectors";
+import {
+  selectCartItems,
+  selectTotalToPay,
+} from "../../redux/cart/cart.selectors";
 import { selectShowCheckoutModal } from "../../redux/checkout/checkout.selectors";
 
 import CheckoutForm from "../../components/checkout-form/checkout-form.component";
@@ -19,8 +22,9 @@ import CheckoutItem from "../../components/checkout-item/checkout-item.component
 // refactor all component !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 import CheckoutModal from "../../components/checkout-modal/checkout-modal.component";
+import CustomTextSpan from "../../components/custom-text-span/custom-text-span.component";
 
-const Checkout = ({ cartItems, showCheckoutModal }) => {
+const Checkout = ({ cartItems, showCheckoutModal, totalToPay }) => {
   const titles = ["Product", "Description", "Quantity", "Price", "Remove"];
 
   return (
@@ -36,9 +40,12 @@ const Checkout = ({ cartItems, showCheckoutModal }) => {
             </CheckoutItemsHeaderBlock>
           ))}
         </CheckoutItemsHeader>
+
         {cartItems.map((cartItem, idx) => (
           <CheckoutItem item={cartItem} key={idx} />
         ))}
+
+        <CustomTextSpan text={`Total: $${totalToPay}`} size={24}/>
       </CheckoutItemsContainer>
 
       {showCheckoutModal ? <CheckoutModal /> : null}
@@ -48,6 +55,7 @@ const Checkout = ({ cartItems, showCheckoutModal }) => {
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
+  totalToPay: selectTotalToPay,
   showCheckoutModal: selectShowCheckoutModal,
 });
 

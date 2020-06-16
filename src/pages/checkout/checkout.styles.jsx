@@ -13,9 +13,16 @@ export const CheckoutFormContainer = styled.div`
 
 export const CheckoutItemsContainer = styled.div`
   width: 65%;
+  display: flex;
+  flex-flow: column;
+
+  span {
+    align-self: flex-end;
+  }
 `;
 
 export const CheckoutItemsHeader = styled.div`
+  width: 100%;
   margin: 0 auto;
   padding: 10px 0;
   display: flex;

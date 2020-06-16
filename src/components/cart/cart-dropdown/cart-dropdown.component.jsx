@@ -14,9 +14,9 @@ import {
 import {
   selectCartItemsCount,
   selectIsHiddenAddMessage,
-  selectSubtotal,
   selectIsHiddenTriangle,
   selectIsHidden,
+  selectTotalToPay,
 } from "../../../redux/cart/cart.selectors";
 
 import {
@@ -148,7 +148,7 @@ const mapStateToProps = createStructuredSelector({
   isHidden: selectIsHidden,
   isHiddenTriangle: selectIsHiddenTriangle,
   isHiddenMessage: selectIsHiddenAddMessage,
-  subtotal: selectSubtotal,
+  subtotal: selectTotalToPay,
 });
 
 const mapDispatchToProps = (dispatch) => ({

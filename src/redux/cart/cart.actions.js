@@ -1,8 +1,13 @@
 import CartActionTypes from "./cart.types";
 
-export const addItem = (item, category) => ({
+export const addItem = (item, category, addItemFromCheckout) => ({
   type: CartActionTypes.ADD_ITEM,
-  payload: { ...item, category },
+  payload: { ...item, category, addItemFromCheckout },
+});
+
+export const subtractItem = (itemToSubtract) => ({
+  type: CartActionTypes.SUBTRACT_ITEM,
+  payload: itemToSubtract,
 });
 
 export const clearItem = (itemToClear) => ({

@@ -27,7 +27,7 @@ export const selectIsHiddenTriangle = createSelector(
   (cart) => cart.isHiddenTriangle
 );
 
-export const selectSubtotal = createSelector([selectCartItems], (cartItems) =>
+export const selectTotalToPay = createSelector([selectCartItems], (cartItems) =>
   cartItems.reduce((acc, item) => {
     const {
       quantity,

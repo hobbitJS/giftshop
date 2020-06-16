@@ -1,4 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import {
+  subtractItem,
+  addItem,
+  clearItem,
+} from "../../redux/cart/cart.actions";
 
 import {
   CheckoutItemContainer,
@@ -17,7 +24,7 @@ import { ReactComponent as DecrementIcon } from "../../assets/decrement-button.s
 import { ReactComponent as IncrementIcon } from "../../assets/increment-button.svg";
 import { ReactComponent as RemoveIcon } from "../../assets/remove-button.svg";
 
-const CheckoutItem = ({ item }) => (
+const CheckoutItem = ({ item, subtractItem, addItem, clearItem }) => (
   <CheckoutItemContainer>
     <ImageContainer>
       <Image img={item.selectedOption.images.big[0]} />
@@ -30,11 +37,11 @@ const CheckoutItem = ({ item }) => (
     </ItemDescription>
     <QuantityContainer>
       <ButtonContainer>
-        <DecrementIcon />
+        <DecrementIcon onClick={() => subtractItem(item)} />
       </ButtonContainer>
       <CustomTextSpan text={item.quantity} weight={`bold`} size={20} />
       <ButtonContainer>
-        <IncrementIcon />
+        <IncrementIcon onClick={() => addItem(item)} />
       </ButtonContainer>
     </QuantityContainer>
     <PriceContainer>
@@ -49,9 +56,15 @@ const CheckoutItem = ({ item }) => (
       />
     </PriceContainer>
     <RemoveContainer>
-      <RemoveIcon />
+      <RemoveIcon onClick={() => clearItem(item)} />
     </RemoveContainer>
   </CheckoutItemContainer>
 );
 
-export default CheckoutItem;
+const mapDispatchToProps = (dispatch) => ({
+  subtractItem: (item) => dispatch(subtractItem(item)),
+  addItem: (item) => dispatch(addItem(item, "", true)),
+  clearItem: (item) => dispatch(clearItem(item)),
+});
+
+export default connect(null, mapDispatchToProps)(CheckoutItem);

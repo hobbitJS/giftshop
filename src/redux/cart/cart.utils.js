@@ -1,17 +1,31 @@
 export const addItem = (cartItems, cartItemToAdd) => {
-  const { id, title, options, selectedOption, category } = cartItemToAdd;
+  const {
+    id,
+    title,
+    options,
+    selectedOption,
+    category,
+    addItemFromCheckout,
+  } = cartItemToAdd;
 
-  const existingCartItem = cartItems.find(
-    (cartItem) =>
-      cartItem.id === id &&
-      cartItem.selectedOption.attribute ===
-        cartItemToAdd.options[selectedOption].attribute
+  const checkItem = (item, itemToAdd) => {
+    const isAddedFromCheckout = addItemFromCheckout
+      ? itemToAdd.selectedOption.attribute
+      : itemToAdd.options[selectedOption].attribute;
+
+    return (
+      item.id === itemToAdd.id &&
+      item.selectedOption.attribute === isAddedFromCheckout
+    );
+  };
+
+  const existingCartItem = cartItems.find((cartItem) =>
+    checkItem(cartItem, cartItemToAdd)
   );
 
   if (existingCartItem) {
     return cartItems.map((cartItem) =>
-      cartItem.id === id &&
-      cartItem.selectedOption.attribute === options[selectedOption].attribute
+      checkItem(cartItem, cartItemToAdd)
         ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     );
@@ -22,7 +36,6 @@ export const addItem = (cartItems, cartItemToAdd) => {
     title,
     selectedOption: options[selectedOption],
     image: options[selectedOption].images.small[0],
-
     quantity: 1,
     category,
   };
@@ -30,10 +43,27 @@ export const addItem = (cartItems, cartItemToAdd) => {
   return [...cartItems, itemToAdd];
 };
 
-export const removeItem = () => {};
+export const subtractItem = (cartItems, itemToSubtract) => {
+  const {
+    id,
+    quantity,
+    selectedOption: { attribute },
+  } = itemToSubtract;
+
+  return quantity === 1
+    ? cartItems
+    : cartItems.map((cartItem) =>
+        cartItem.id === id && cartItem.selectedOption.attribute === attribute
+          ? { ...cartItem, quantity: cartItem.quantity - 1 }
+          : cartItem
+      );
+};
 
 export const clearItem = (cartItems, itemToClear) => {
-  const { id, attribute } = itemToClear;
+  const {
+    id,
+    selectedOption: { attribute },
+  } = itemToClear;
 
   return cartItems.filter(
     (cartItem) =>
