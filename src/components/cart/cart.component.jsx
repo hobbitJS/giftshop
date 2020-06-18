@@ -30,10 +30,7 @@ import {
   hideCartDropdown,
 } from "../../redux/cart/cart.utils";
 
-import CartDropdown from "./cart-dropdown/cart-dropdown.component";
-
 const Cart = ({
-  items,
   count,
   isHidden,
   isHiddenTriangle,
@@ -42,36 +39,34 @@ const Cart = ({
   showTriangle,
   hideTriangle,
 }) => {
+  const showCart = () => {
+    if (isHiddenTriangle) showTriangle();
+    showCartAction();
+    showCartDropdown();
+  };
+
+  const hideCart = () => {
+    hideTriangle();
+    hideCartAction();
+    hideCartDropdown();
+  };
+
   return (
     <CartContainer>
       <CartIconContainer
         onMouseOver={() => {
           if (!isHidden) return;
-          if (isHiddenTriangle) showTriangle();
-          showCartAction();
-          showCartDropdown();
+          showCart();
         }}
-        onMouseLeave={() => {
-          hideTriangle();
-          hideCartAction();
-          hideCartDropdown();
-        }}
+        onMouseLeave={() => hideCart()}
       >
         <CartCounter>{count}</CartCounter>
         <CartIcon className="cart-icon" title="Cart" />
       </CartIconContainer>
 
       <TriangleContainer
-        onMouseOver={() => {
-          if (isHiddenTriangle) showTriangle();
-          showCartAction();
-          showCartDropdown();
-        }}
-        onMouseLeave={() => {
-          hideTriangle();
-          hideCartAction();
-          hideCartDropdown();
-        }}
+        onMouseOver={() => showCart()}
+        onMouseLeave={() => hideCart()}
       >
         <div
           className={`cart-triangle ${
@@ -79,8 +74,6 @@ const Cart = ({
           }`}
         ></div>
       </TriangleContainer>
-
-      {/* {!isHidden ? <CartDropdown cartItems={items} /> : null} */}
     </CartContainer>
   );
 };

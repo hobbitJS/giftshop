@@ -1,8 +1,8 @@
 import ProductActionTypes from "./product.types";
 
-export const fetchProductStart = (category, productId) => ({
+export const fetchProductStart = (category, productId, optionFromUrl) => ({
   type: ProductActionTypes.FETCH_PRODUCT_START,
-  payload: { category, productId },
+  payload: { category, productId, optionFromUrl },
 });
 
 export const fetchProductSuccess = (product) => ({

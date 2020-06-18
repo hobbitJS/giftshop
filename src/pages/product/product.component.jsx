@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
@@ -14,6 +14,7 @@ import {
   selectProductItem,
   selectIsProductFetching,
   selectIsProductLoaded,
+  selectSelectedOption,
 } from "./../../redux/product/product.selectors";
 
 import LoadingOverlay from "../../components/loading-overlay/loading-overlay.component";
@@ -47,6 +48,7 @@ import { showCartDropdown } from "../../redux/cart/cart.utils";
 
 const Product = ({
   match,
+  history,
   fetchProductStart,
   isFetching,
   isLoaded,
@@ -58,13 +60,23 @@ const Product = ({
   showCartAction,
   showAddItemMessage,
   showTriangle,
+  selectedOption,
 }) => {
   const category = match.url.split("/")[2];
-  const productId = match.url.split("/")[3];
+  const productId = match.params.productItemId;
+  const { pathname } = history.location;
+
+  // return option from url
+  const checkOptionFromUrl = useCallback(() => {
+    const splittedPath = pathname.split("/");
+    return parseInt(splittedPath[splittedPath.length - 1]);
+  }, [pathname]);
 
   useEffect(() => {
-    fetchProductStart(category, productId);
-  }, [fetchProductStart, category, productId]);
+    const optionFromUrl = checkOptionFromUrl();
+
+    fetchProductStart(category, productId, optionFromUrl);
+  }, [fetchProductStart, category, productId, checkOptionFromUrl, pathname]);
 
   return (
     <ProductContainer>
@@ -75,21 +87,19 @@ const Product = ({
           <ProductImage image={item.selectedBackgroundImage}>
             <ProductOptionIconContainer>
               {item.options.length &&
-                item.options[item.selectedOption].images.small.map(
-                  (el, idx) => (
-                    <ProductOptionIcon
-                      image={el}
-                      key={idx}
-                      active={idx === item.selectedProductIcon ? true : false}
-                      onClick={() => {
-                        selectProductIcon(idx);
-                        selectBackgroundImage(
-                          item.options[item.selectedOption].images.big[idx]
-                        );
-                      }}
-                    />
-                  )
-                )}
+                item.options[selectedOption].images.small.map((el, idx) => (
+                  <ProductOptionIcon
+                    image={el}
+                    key={idx}
+                    active={idx === item.selectedProductIcon ? true : false}
+                    onClick={() => {
+                      selectProductIcon(idx);
+                      selectBackgroundImage(
+                        item.options[item.selectedOption].images.big[idx]
+                      );
+                    }}
+                  />
+                ))}
             </ProductOptionIconContainer>
             <ProductOptionsContainer>
               <CustomTextSpan size={22}>{item.title}</CustomTextSpan>
@@ -171,11 +181,12 @@ const mapStateToProps = createStructuredSelector({
   item: selectProductItem,
   isFetching: selectIsProductFetching,
   isLoaded: selectIsProductLoaded,
+  selectedOption: selectSelectedOption,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchProductStart: (category, id) =>
-    dispatch(fetchProductStart(category, id)),
+  fetchProductStart: (category, id, optionFromUrl) =>
+    dispatch(fetchProductStart(category, id, optionFromUrl)),
   selectOption: (option) => dispatch(selectOption(option)),
   selectBackgroundImage: (background) =>
     dispatch(selectBackgroundImage(background)),
@@ -186,7 +197,8 @@ const mapDispatchToProps = (dispatch) => ({
   showTriangle: () => dispatch(showTriangle()),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(Product));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Product)
+);
+
+// RESCRIE COMPONENTUL CLASS BASED

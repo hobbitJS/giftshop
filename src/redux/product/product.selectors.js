@@ -26,3 +26,8 @@ export const selectShowSubstitutionPolicy = createSelector(
   [selectProduct],
   (product) => product.isShownSubstitutionPolicy
 );
+
+export const selectSelectedOption = createSelector(
+  [selectProductItem],
+  (item) => item.selectedOption
+);

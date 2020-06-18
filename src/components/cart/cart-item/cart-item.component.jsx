@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import { clearItem } from "../../../redux/cart/cart.actions";
 
@@ -15,18 +16,26 @@ import CustomTextSpan from "../../custom-text-span/custom-text-span.component";
 
 import { ReactComponent as RemoveIcon } from "../../../assets/remove-button.svg";
 
-const CartItem = ({ item, clearItem }) => {
+const CartItem = ({ item, clearItem, history }) => {
   const {
+    id,
+    category,
     image,
     title,
     quantity,
+    optionNumber,
     selectedOption: { attribute, price, discountPrice },
   } = item;
 
+  const linkToItem = () => {
+    history.push(`/shop/${category}/${id}/${optionNumber}`);
+    console.log(history);
+  };
+
   return (
     <CartItemContainer>
-      <CartItemImage image={image} />
-      <CartItemDetails>
+      <CartItemImage image={image} onClick={() => linkToItem()} />
+      <CartItemDetails onClick={() => linkToItem()}>
         <CustomTextSpan text={title} size="16" weight="bold" />
         <CustomTextSpan>
           <b>Option: </b>
@@ -41,6 +50,7 @@ const CartItem = ({ item, clearItem }) => {
           </CustomTextSpan>
         </CartItemQuantityPrice>
       </CartItemDetails>
+
       <RemoveCartItemContainer onClick={() => clearItem(item)}>
         <RemoveIcon />
       </RemoveCartItemContainer>
@@ -51,4 +61,4 @@ const mapDispatchToProps = (dispatch) => ({
   clearItem: (item) => dispatch(clearItem(item)),
 });
 
-export default connect(null, mapDispatchToProps)(CartItem);
+export default withRouter(connect(null, mapDispatchToProps)(CartItem));

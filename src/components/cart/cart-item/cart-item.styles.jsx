@@ -12,6 +12,7 @@ export const CartItemImage = styled.div`
   width: 80px;
   height: 80px;
   border: 1px solid lightgrey;
+  cursor: pointer;
 `;
 
 export const CartItemDetails = styled.div`
@@ -20,6 +21,10 @@ export const CartItemDetails = styled.div`
   flex-flow: column;
   justify-content: center;
   margin: 0 0 0 15px;
+
+  span {
+    cursor: pointer;
+  }
 `;
 
 export const CartItemQuantityPrice = styled.div`

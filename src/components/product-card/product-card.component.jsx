@@ -62,10 +62,10 @@ const ProductCard = ({ item, match, history }) => {
     );
   };
 
-  const { image, title, options, id } = item;
+  const { image, title, options, id, defaultOption } = item;
 
   return (
-    <ProductCardContainer onClick={() => history.push(`${match.url}/${id}`)}>
+    <ProductCardContainer onClick={() => history.push(`${match.url}/${id}/${defaultOption}`)}>
       <ProductCardImageContainer>
         <ProductCardImage src={image ? image : noImg} alt={title} />
         <CustomButton isIcon addToCartImg isAbsolute title="Add to Cart" />

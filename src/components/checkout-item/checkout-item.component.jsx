@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import {
   subtractItem,
@@ -13,7 +14,6 @@ import {
   Image,
   ItemDescription,
   QuantityContainer,
-  ButtonContainer,
   PriceContainer,
   RemoveContainer,
 } from "./checkout-item.styles";
@@ -24,42 +24,47 @@ import { ReactComponent as DecrementIcon } from "../../assets/decrement-button.s
 import { ReactComponent as IncrementIcon } from "../../assets/increment-button.svg";
 import { ReactComponent as RemoveIcon } from "../../assets/remove-button.svg";
 
-const CheckoutItem = ({ item, subtractItem, addItem, clearItem }) => (
-  <CheckoutItemContainer>
-    <ImageContainer>
-      <Image img={item.selectedOption.images.big[0]} />
-    </ImageContainer>
-    <ItemDescription>
-      <CustomTextSpan text={item.title} weight={"bold"} />
-      <CustomTextSpan>
-        <b>Option:</b> {item.selectedOption.attribute}
-      </CustomTextSpan>
-    </ItemDescription>
-    <QuantityContainer>
-      <ButtonContainer>
+const CheckoutItem = ({ item, subtractItem, addItem, clearItem, history }) => {
+  const {
+    id,
+    title,
+    category,
+    optionNumber,
+    selectedOption: { attribute, images, price, discountPrice },
+  } = item;
+
+  const linkToItem = () =>
+    history.push(`/shop/${category}/${id}/${optionNumber}`);
+
+  return (
+    <CheckoutItemContainer>
+      <ImageContainer onClick={() => linkToItem()}>
+        <Image img={images.big[0]} />
+      </ImageContainer>
+      <ItemDescription onClick={() => linkToItem()}>
+        <CustomTextSpan text={title} weight={"bold"} />
+        <CustomTextSpan>
+          <b>Option:</b> {attribute}
+        </CustomTextSpan>
+      </ItemDescription>
+      <QuantityContainer>
         <DecrementIcon onClick={() => subtractItem(item)} />
-      </ButtonContainer>
-      <CustomTextSpan text={item.quantity} weight={`bold`} size={20} />
-      <ButtonContainer>
+        <CustomTextSpan text={item.quantity} weight={`bold`} size={20} />
         <IncrementIcon onClick={() => addItem(item)} />
-      </ButtonContainer>
-    </QuantityContainer>
-    <PriceContainer>
-      <CustomTextSpan
-        text={`$${
-          item.selectedOption.price > item.selectedOption.discountPrice
-            ? item.selectedOption.discountPrice
-            : item.selectedOption.price
-        }`}
-        weight={`bold`}
-        size={20}
-      />
-    </PriceContainer>
-    <RemoveContainer>
-      <RemoveIcon onClick={() => clearItem(item)} />
-    </RemoveContainer>
-  </CheckoutItemContainer>
-);
+      </QuantityContainer>
+      <PriceContainer>
+        <CustomTextSpan
+          text={`$${price > discountPrice ? discountPrice : price}`}
+          weight={`bold`}
+          size={20}
+        />
+      </PriceContainer>
+      <RemoveContainer>
+        <RemoveIcon onClick={() => clearItem(item)} />
+      </RemoveContainer>
+    </CheckoutItemContainer>
+  );
+};
 
 const mapDispatchToProps = (dispatch) => ({
   subtractItem: (item) => dispatch(subtractItem(item)),
@@ -67,4 +72,4 @@ const mapDispatchToProps = (dispatch) => ({
   clearItem: (item) => dispatch(clearItem(item)),
 });
 
-export default connect(null, mapDispatchToProps)(CheckoutItem);
+export default connect(null, mapDispatchToProps)(withRouter(CheckoutItem));

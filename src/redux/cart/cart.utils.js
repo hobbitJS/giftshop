@@ -34,6 +34,7 @@ export const addItem = (cartItems, cartItemToAdd) => {
   const itemToAdd = {
     id,
     title,
+    optionNumber: selectedOption,
     selectedOption: options[selectedOption],
     image: options[selectedOption].images.small[0],
     quantity: 1,

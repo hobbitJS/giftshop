@@ -12,6 +12,7 @@ export const CheckoutItemContainer = styled.div`
 export const ImageContainer = styled.div`
   width: 23%;
   padding-right: 15px;
+  cursor: pointer;
 `;
 
 export const Image = styled.div`
@@ -28,6 +29,10 @@ export const ItemDescription = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
+
+  span {
+    cursor: pointer;
+  }
 `;
 
 export const QuantityContainer = styled.div`
@@ -35,17 +40,12 @@ export const QuantityContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-export const ButtonContainer = styled.div`
-  height: 20px;
-  width: 20px;
-  margin: 0 10px;
-  cursor: pointer;
 
   svg {
-    height: 100%;
-    width: 100%;
+    width: 20px;
+    height: 20px;
+    margin: 0 10px;
+    cursor: pointer;
   }
 `;
 
