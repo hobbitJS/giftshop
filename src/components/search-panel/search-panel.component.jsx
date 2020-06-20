@@ -1,18 +1,27 @@
 import React from "react";
 
-import loupe from "../../assets/loupe.svg";
+import { ReactComponent as Loupe } from "../../assets/loupe.svg";
 
-import {
-  SearchPanelContainer,
-  SearchPanelInput,
-  SearchPanelInputImage,
-} from "./search-panel.styles";
+import { SearchPanelContainer, SearchPanelInput } from "./search-panel.styles";
 
-const SearchPanel = () => (
-  <SearchPanelContainer>
-    <SearchPanelInput placeholder="Search for gifts..." />
-    <SearchPanelInputImage src={loupe} title="Search" />
-  </SearchPanelContainer>
-);
+const SearchPanel = ({ value, handleChange, handleClear, handleSubmit }) => {
+  const submit = (e) => {
+    e.preventDefault();
+    handleSubmit();
+    handleClear();
+    document.activeElement.blur();
+  };
+
+  return (
+    <SearchPanelContainer onSubmit={(e) => submit(e)}>
+      <SearchPanelInput
+        placeholder="Search for gifts..."
+        value={value}
+        onChange={(e) => handleChange(e.target.value)}
+      />
+      <Loupe title="Search" />
+    </SearchPanelContainer>
+  );
+};
 
 export default SearchPanel;

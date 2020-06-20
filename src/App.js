@@ -6,6 +6,7 @@ import Header from "./components/header/header.component";
 import Home from "./pages/home/home.component";
 import Category from "./pages/category/category.component";
 import Checkout from "./pages/checkout/checkout.component";
+import SearchPage from "./pages/search-page/search-page.component";
 
 import "./App.css";
 import { ContentContainer } from "./App.styles";
@@ -20,6 +21,7 @@ class App extends React.Component {
             <Route path="/" exact component={Home} />
             <Route path="/shop/:categoryName" component={Category} />
             <Route path="/checkout" component={Checkout} />
+            <Route path="/search/:query" component={SearchPage} />
           </Switch>
         </ContentContainer>
       </div>

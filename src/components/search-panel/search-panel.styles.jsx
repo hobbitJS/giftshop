@@ -8,6 +8,12 @@ export const SearchPanelContainer = styled.form`
   border: 1px solid #d893a2;
   border-radius: 5px;
   box-sizing: content-box;
+
+  svg {
+    height: 100%;
+    width: 5%;
+    cursor: pointer;
+  }
 `;
 
 export const SearchPanelInput = styled.input.attrs((props) => ({
@@ -21,10 +27,4 @@ export const SearchPanelInput = styled.input.attrs((props) => ({
   &:focus {
     outline: none;
   }
-`;
-
-export const SearchPanelInputImage = styled.img`
-  height: 100%;
-  width: 5%;
-  cursor: pointer;
 `;

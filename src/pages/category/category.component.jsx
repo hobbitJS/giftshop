@@ -37,7 +37,9 @@ const Category = ({
           {isLoaded === false || isFetching === true ? (
             <LoadingOverlay />
           ) : (
-            itemsFromCategory.map((el) => <ProductCard item={el} key={el.id} />)
+            itemsFromCategory.map((el) => (
+              <ProductCard item={el} category={categoryName} key={el.id} />
+            ))
           )}
         </Route>
       </CategoryContainer>

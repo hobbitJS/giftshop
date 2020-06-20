@@ -12,9 +12,7 @@ import {
   ProductCardPrice,
 } from "./product-card.styles";
 
-import CustomButton from "../custom-button/custom-button.component";
-
-const ProductCard = ({ item, match, history }) => {
+const ProductCard = ({ item, category, history }) => {
   const computedPriceRange = (options) => {
     const standardPrices = [];
     const discountPrices = [];
@@ -65,10 +63,11 @@ const ProductCard = ({ item, match, history }) => {
   const { image, title, options, id, defaultOption } = item;
 
   return (
-    <ProductCardContainer onClick={() => history.push(`${match.url}/${id}/${defaultOption}`)}>
+    <ProductCardContainer
+      onClick={() => history.push(`/shop/${category}/${id}/${defaultOption}`)}
+    >
       <ProductCardImageContainer>
         <ProductCardImage src={image ? image : noImg} alt={title} />
-        <CustomButton isIcon addToCartImg isAbsolute title="Add to Cart" />
       </ProductCardImageContainer>
       <ProductCardTitle>{title}</ProductCardTitle>
       {computedPriceRange(options)}

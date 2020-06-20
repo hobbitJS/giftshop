@@ -200,5 +200,3 @@ const mapDispatchToProps = (dispatch) => ({
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Product)
 );
-
-// RESCRIE COMPONENTUL CLASS BASED
