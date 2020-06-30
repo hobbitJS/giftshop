@@ -7,6 +7,7 @@ import productReducer from "./product/product.reducer";
 import cartReducer from "./cart/cart.reducer";
 import checkoutReducer from "./checkout/checkout.reducer";
 import searchPanelHeaderReducer from "./search-panel-header/search-panel-header.reducer";
+import LoginReducer from "./login/login.reducer";
 
 const persistConfig = {
   key: "root",
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   checkout: checkoutReducer,
   searchPanelHeader: searchPanelHeaderReducer,
+  login: LoginReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

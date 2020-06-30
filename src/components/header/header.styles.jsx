@@ -54,3 +54,25 @@ export const HeaderLink = styled(Link)`
     color: #d893a2;
   }
 `;
+
+export const HeaderUtilityContainer = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
+
+export const LoginLinkContainer = styled(Link)`
+  margin-right: 30px;
+  border-radius: 50%;
+  padding: 7px 7px 3px 7px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0px 0px 10px 0px #d893a2;
+  }
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+`;

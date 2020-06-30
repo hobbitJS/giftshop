@@ -8,7 +8,7 @@ export const LoadingOverlayContainer = styled.div`
   left: 0;
   display: flex;
   justify-content: center;
-  z-index: 999;
+  z-index: 9999;
   background-color: rgba(216, 147, 162, 0.35);
 
   div {

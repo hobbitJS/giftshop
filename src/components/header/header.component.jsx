@@ -20,9 +20,12 @@ import {
   LogoContainer,
   HeaderLinksContainer,
   HeaderLink,
+  HeaderUtilityContainer,
+  LoginLinkContainer,
 } from "./header.styles";
 
 import SearchPanel from "../search-panel/search-panel.component";
+import { ReactComponent as LoginUserIcon } from "../../assets/user-login.svg";
 import Cart from "../cart/cart.component";
 import CartDropdown from "../cart/cart-dropdown/cart-dropdown.component";
 
@@ -44,18 +47,28 @@ const Header = ({
           <LogoContainer to="/">
             <Logo className="logo" />
           </LogoContainer>
+
           <HeaderLinksContainer>
             <HeaderLink to="/contact">CONTACT</HeaderLink>
             <HeaderLink to="/about-us">ABOUT US</HeaderLink>
           </HeaderLinksContainer>
+
           <SearchPanel
             value={searchPanelQueryValue}
             handleChange={changeQueryValue}
             handleClear={clearQueryValue}
             handleSubmit={handleSubmit}
           />
-          <Cart />
+
+          <HeaderUtilityContainer>
+            <LoginLinkContainer to="/login" title="Login">
+              <LoginUserIcon />
+            </LoginLinkContainer>
+
+            <Cart />
+          </HeaderUtilityContainer>
         </NavContainer>
+
         <CartDropdown cartItems={cartItems} />
       </HeaderContainer>
     </HeaderLayoutContainer>
