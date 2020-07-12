@@ -8,7 +8,7 @@ import { fetchCategorySuccess, fetchCategoryFailure } from "./category.actions";
 
 export function* fetchCategoryAsync(category) {
   try {
-    const categoryRef = firestore
+    const categoryRef = yield firestore
       .collection("categories")
       .doc(`${category.payload}`);
     const snapshot = yield categoryRef.get();

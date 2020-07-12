@@ -43,10 +43,11 @@ const CartItem = ({ item, clearItem, history }) => {
         </CustomTextSpan>
         <CartItemQuantityPrice>
           <CustomTextSpan size="16">
-            Quantity: <b>{quantity}</b>
+            Quantity:<b>{quantity}</b>
           </CustomTextSpan>
-          <CustomTextSpan size="16" weight="bold">
-            ${(price > discountPrice ? discountPrice : price) * quantity}
+          <CustomTextSpan size="16">
+            Price:
+            <b>${(price > discountPrice ? discountPrice : price) * quantity}</b>
           </CustomTextSpan>
         </CartItemQuantityPrice>
       </CartItemDetails>

@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Header from "./components/header/header.component";
+import Footer from "./components/footer/footer.component";
 
 import Home from "./pages/home/home.component";
 import Category from "./pages/category/category.component";
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/admin-panel" component={AdminPanel} />
         </Switch>
       </ContentContainer>
+      <Footer />
     </div>
   );
 };

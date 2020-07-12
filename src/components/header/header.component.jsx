@@ -48,16 +48,17 @@ const Header = ({
             <Logo className="logo" />
           </LogoContainer>
 
-          <HeaderLinksContainer>
+          {/* <HeaderLinksContainer>
             <HeaderLink to="/contact">CONTACT</HeaderLink>
             <HeaderLink to="/about-us">ABOUT US</HeaderLink>
-          </HeaderLinksContainer>
+          </HeaderLinksContainer> */}
 
           <SearchPanel
             value={searchPanelQueryValue}
             handleChange={changeQueryValue}
             handleClear={clearQueryValue}
             handleSubmit={handleSubmit}
+            className="search-panel-header"
           />
 
           <HeaderUtilityContainer>

@@ -1,25 +1,29 @@
 import styled from "styled-components";
+import { device } from "../../../device";
 
 export const CartDropdownContainer = styled.div`
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  min-height: 44px;
-  min-width: 335px;
-  position: absolute;
-  top: 90px;
-  right: 0;
-  background-color: white;
-  border: 1px solid lightgrey;
-  opacity: 0; /* initial */
-  z-index: -1;
-  transition: all 1s ease;
+  @media ${device.mobileS} {
+    min-width: 160px;
+    max-width: 290px;
+    min-height: 44px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background-color: white;
+    border: 1px solid lightgrey;
+    opacity: 0; /* initial */
+    position: absolute;
+    top: 90px;
+    right: 15px;
+    z-index: -1;
+    transition: all 1s ease;
 
-  button {
-    margin: 10px;
+    button {
+      margin: 10px;
 
-    a {
-      color: white;
+      a {
+        color: white;
+      }
     }
   }
 `;

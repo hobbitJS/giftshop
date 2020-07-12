@@ -1,27 +1,43 @@
 import styled from "styled-components";
+import { device } from "../../device";
 
 export const SearchPageContainer = styled.div`
-  display: flex;
-  flex-flow: column;
-  width: 1110px;
-  margin: 0 auto;
+  @media ${device.mobileS} {
+    width: 100vw;
+    display: flex;
+    flex-flow: column;
+    margin: 0 auto;
+  }
+
+  @media ${device.laptopL} {
+    max-width: 1110px;
+  }
 `;
 
 export const SearchPageCategoryContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-flow: column;
+  @media ${device.mobileS} {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+  }
 `;
 export const SearchPageCategoryTitle = styled.h2`
-  text-transform: capitalize;
+  @media ${device.mobileS} {
+    text-transform: capitalize;
+    padding: 0 20px;
+  }
 `;
 
 export const SearchPageItemsByCategory = styled.div`
-  width: 100%;
-  display: flex;
+  @media ${device.mobileS} {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 
-  div {
-    margin-right: 20px;
+  @media ${device.tablet} {
+    justify-content: flex-start;
   }
 `;
 

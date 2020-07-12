@@ -15,8 +15,8 @@ export const SelectedOptionDetailsListsContainer = styled.div`
 `;
 
 export const SelectedOptionListContainer = styled.div`
-  width: ${({ width }) => (width ? `${width}` : `100%`)};
-  margin-top: 20px;
+  width: 45%;
+  margin: 20px 0 0;
 `;
 
 export const SelectedOptionList = styled.ul`

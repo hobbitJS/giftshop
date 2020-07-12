@@ -1,9 +1,12 @@
 import styled from "styled-components";
+import { device } from "../../device";
 
 export const HomeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 1110px;
-  margin: 0 auto;
+  @media ${device.mobileS} {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;

@@ -101,7 +101,7 @@ const Product = ({
                   />
                 ))}
             </ProductOptionIconContainer>
-            <ProductOptionsContainer>
+            <ProductOptionsContainer itemsCount={item.options.length}>
               <CustomTextSpan size={22}>{item.title}</CustomTextSpan>
               <CustomTextSpan
                 size={14}
@@ -163,7 +163,7 @@ const Product = ({
             </ProductOptionsContainer>
           </ProductImage>
 
-          <ProductDetailsSection>
+          <ProductDetailsSection itemsCount={item.options.length}>
             <SelectedOptionDetails
               options={item.options}
               selectedOption={item.selectedOption}

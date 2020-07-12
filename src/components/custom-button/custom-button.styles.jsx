@@ -1,38 +1,50 @@
 import styled, { css } from "styled-components";
+import { device } from "../../device";
 
 import cart from "../../assets/cart.svg";
 
 const buttonStyles = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  @media ${device.mobileS} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    border: none;
+  }
+
+  @media ${device.laptop} {
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
 `;
 
 const textStyles = css`
-  width: ${({ width }) => (width ? `${width}` : "auto")};
-  color: ${({ color }) => (color ? `${color}` : "black")};
-  line-height: 50px;
-  padding: 0 35px;
-  font-size: 15px;
-  text-transform: uppercase;
-  font-family: "Raleway", sans-serif;
-  font-weight: bolder;
+  @media ${device.mobileS} {
+    width: ${({ width }) => (width ? `${width}` : "auto")};
+    color: ${({ color }) => (color ? `${color}` : "black")};
+    line-height: 50px;
+    padding: 0 10px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-family: "Raleway", sans-serif;
+    font-weight: bolder;
+  }
 `;
 
 const iconStyles = css`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-position: 40% 50%;
-  background-repeat: no-repeat;
-  background-size: 60% 60%;
+  @media ${device.mobileS} {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-position: 40% 50%;
+    background-repeat: no-repeat;
+    background-size: 60% 60%;
+  }
 
-  &:hover {
-    background-color: rgba(216, 147, 162, 0.7);
+  @media ${device.laptop} {
+    &:hover {
+      background-color: rgba(216, 147, 162, 0.7);
+    }
   }
 `;
 

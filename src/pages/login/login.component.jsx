@@ -74,7 +74,7 @@ const LoginForm = ({
         </FormContainer>
       </LoginFormContainer>
       {isLoading ? <LoadingOverlay /> : null}
-      {isSignedIn && isAdmin ? <Redirect to="/admin-panel" /> : null}
+      {isSignedIn && isAdmin ? <Redirect to="/admin-panel/orders" /> : null}
     </LoginOverlayContainer>
   );
 };

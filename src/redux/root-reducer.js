@@ -8,11 +8,12 @@ import cartReducer from "./cart/cart.reducer";
 import checkoutReducer from "./checkout/checkout.reducer";
 import searchPanelHeaderReducer from "./search-panel-header/search-panel-header.reducer";
 import LoginReducer from "./login/login.reducer";
+import OrdersReducer from "./orders/orders.reducer";
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["cart"],
+  whitelist: ["cart", "login"],
 };
 
 const rootReducer = combineReducers({
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   checkout: checkoutReducer,
   searchPanelHeader: searchPanelHeaderReducer,
   login: LoginReducer,
+  orders: OrdersReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

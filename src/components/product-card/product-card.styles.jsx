@@ -1,35 +1,59 @@
 import styled, { css } from "styled-components";
+import { device } from "../../device";
 
 export const ProductCardContainer = styled.div`
-  width: calc(25% - 9px);
-  margin: 10px 0;
-  cursor: pointer;
+  @media ${device.mobileS} {
+    width: 100%;
+    padding: 0 20px;
+    margin: 10px 0;
+  }
+
+  @media ${device.tablet} {
+    width: 50%;
+  }
+
+  @media ${device.laptop} {
+    cursor: pointer;
+    width: calc(25% - 9px);
+  }
 `;
 
 export const ProductCardImageContainer = styled.div`
-  width: 100%;
-  height: 75%;
-  position: relative;
+  @media ${device.mobileS} {
+    width: 100%;
+    height: 75%;
+    position: relative;
 
-  button {
-    bottom: 20px;
-    right: 20px;
+    button {
+      bottom: 20px;
+      right: 20px;
+    }
+  }
+
+  @media ${device.tablet} {
+    height: 70%;
   }
 `;
 
 export const ProductCardImage = styled.img`
-  width: 100%;
-  height: 100%;
+  @media ${device.mobileS} {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const ProductCardTitle = styled.span`
-  font-family: "Raleway", sans-serif;
-  font-size: 1rem;
+  @media ${device.mobileS} {
+    font-family: "Raleway", sans-serif;
+    font-size: 1rem;
+  }
 `;
 
 export const ProductCardPriceContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  @media ${device.mobileS} {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const discountStyles = css`
@@ -42,11 +66,13 @@ const oldStyles = css`
 `;
 
 export const ProductCardPrice = styled.span`
-  font-size: 16px;
-  font-family: "Open Sans", sans-serif;
-  font-weight: bold;
-  color: grey;
-  margin-top: 5px;
-  ${(props) => (props.discount ? discountStyles : null)}
-  ${(props) => (props.old ? oldStyles : null)}
+  @media ${device.mobileS} {
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    color: grey;
+    margin-top: 5px;
+    ${(props) => (props.discount ? discountStyles : null)}
+    ${(props) => (props.old ? oldStyles : null)}
+  }
 `;

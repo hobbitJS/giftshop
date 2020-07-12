@@ -118,7 +118,7 @@ class CartDropdown extends React.Component {
         ))}
 
         <CartSubtotalContainer>
-          <CustomTextSpan text={`Sub-total`} />
+          <CustomTextSpan text={"Sub-total:"} />
           <CustomTextSpan text={`$${subtotal}`} />
         </CartSubtotalContainer>
         {count > 0 ? (

@@ -11,12 +11,17 @@ import {
 } from "./home-menu.styles";
 
 const HomeMenu = ({ history, match }) => {
+  // const menuItems = [
+  //   { title: "bouquets" },
+  //   { title: "toys" },
+  //   { title: "plants" },
+  //   { title: "boxes", isLarge: true },
+  //   { title: "balloons", isLarge: true },
+  // ];
+
   const menuItems = [
-    { title: "bouquets" },
-    { title: "toys" },
-    { title: "plants" },
-    { title: "boxes", isLarge: true },
-    { title: "balloons", isLarge: true },
+    { title: "bouquets", isLarge: true },
+    { title: "plants", isLarge: true },
   ];
 
   return (
