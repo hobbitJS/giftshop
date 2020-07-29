@@ -6,29 +6,26 @@ import { createStructuredSelector } from "reselect";
 import {
   selectIsLoading,
   selectError,
-} from "../../redux/checkout/checkout.selectors";
+} from "../../../redux/checkout/checkout.selectors";
 
 import {
   hideCheckoutModal,
   clearCheckoutForm,
-} from "../../redux/checkout/checkout.actions";
-import { clearItems } from "../../redux/cart/cart.actions";
+} from "../../../redux/checkout/checkout.actions";
+import { clearItems } from "../../../redux/cart/cart.actions";
 
 import {
   CheckoutModalContainer,
   CheckoutNotificationContainer,
-  CheckoutNotificationImageContainer,
   CheckoutNotificationMessageContainer,
 } from "./checkout-modal.styles";
 
-import { ReactComponent as Moth } from "../../assets/checkout-notification/moth.svg";
-import { ReactComponent as Ladybird } from "../../assets/checkout-notification/ladybird.svg";
-import { ReactComponent as Rainbow } from "../../assets/checkout-notification/rainbow.svg";
-import { ReactComponent as Wind } from "../../assets/checkout-notification/wind.svg";
+import { ReactComponent as Rainbow } from "../../../assets/checkout-notification/rainbow.svg";
+import { ReactComponent as Wind } from "../../../assets/checkout-notification/wind.svg";
 
-import Spinner from "../spinner/spinner.component";
-import CustomTextSpan from "../custom-text-span/custom-text-span.component";
-import CustomButton from "../custom-button/custom-button.component";
+import Spinner from "../../spinner/spinner.component";
+import CustomTextSpan from "../../custom-text-span/custom-text-span.component";
+import CustomButton from "../../custom-button/custom-button.component";
 
 const CheckoutModal = ({
   isLoading,
@@ -42,9 +39,6 @@ const CheckoutModal = ({
       <Spinner />
     ) : (
       <CheckoutNotificationContainer>
-        <CheckoutNotificationImageContainer>
-          {error ? <Moth /> : <Ladybird />}
-        </CheckoutNotificationImageContainer>
         <CheckoutNotificationMessageContainer>
           {error ? <Wind /> : <Rainbow />}
           <CustomTextSpan size={18}>

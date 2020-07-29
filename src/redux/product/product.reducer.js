@@ -1,19 +1,9 @@
 import ProductActionTypes from "./product.types";
 
 const INITIAL_STATE = {
-  item: {
-    id: null,
-    title: null,
-    options: [],
-    selectedOption: null,
-    selectedBackgroundImage: null,
-    selectedProductIcon: null,
-    selectedOptionDetails: null,
-    stems: null,
-    cardImage: null,
-  },
+  item: null,
   isFetching: false,
-  error: undefined,
+  error: "",
   isShownDeliveryDetails: false,
   isShownSubstitutionPolicy: false,
 };

@@ -5,48 +5,33 @@ import CustomButton from "../custom-button/custom-button.component";
 
 import {
   HomeMenuContainer,
-  HomeMenuItem,
-  HomeBackgroundImage,
-  HomeMenuLink,
+  MenuItem,
+  ItemBackgroundImg,
 } from "./home-menu.styles";
 
-const HomeMenu = ({ history, match }) => {
-  // const menuItems = [
-  //   { title: "bouquets" },
-  //   { title: "toys" },
-  //   { title: "plants" },
-  //   { title: "boxes", isLarge: true },
-  //   { title: "balloons", isLarge: true },
-  // ];
-
+const HomeMenu = ({ history, match: { url } }) => {
   const menuItems = [
-    { title: "bouquets", isLarge: true },
-    { title: "plants", isLarge: true },
+    { title: "bouquets" },
+    { title: "toys" },
+    { title: "plants" },
+    { title: "boxes", isHigher: true },
+    { title: "balloons", isHigher: true },
   ];
 
   return (
     <HomeMenuContainer>
-      {menuItems.map((el) => (
-        <HomeMenuItem
-          key={el.title}
-          isLarge={el.isLarge}
-          onClick={() => history.push(`/shop${match.url}${el.title}`)}
+      {menuItems.map(({ title, isHigher }) => (
+        <MenuItem
+          key={title}
+          isHigher={isHigher}
+          onClick={() => history.push(`/shop${url}${title}`)}
         >
-          <HomeBackgroundImage
-            background={el.title}
-            className="background-image"
+          <ItemBackgroundImg
+            background={title}
+            className="item-background-image"
           />
-          <HomeMenuLink className="home-menu-link">
-            <CustomButton
-              isText
-              bgColor={`rgba(255, 255, 255, 0.8)`}
-              bgColorHover={`black`}
-              colorHover={`white`}
-            >
-              {el.title}
-            </CustomButton>
-          </HomeMenuLink>
-        </HomeMenuItem>
+          <CustomButton whiteButton text={title} />
+        </MenuItem>
       ))}
     </HomeMenuContainer>
   );

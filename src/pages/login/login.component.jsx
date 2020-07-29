@@ -47,7 +47,13 @@ const LoginForm = ({
         <LogoContainer to="/">
           <Logo />
         </LogoContainer>
-        <FormContainer>
+        <FormContainer
+          onSubmit={(e) => {
+            e.preventDefault();
+            const { email, password } = userData;
+            signIn(email, password);
+          }}
+        >
           <h2>SIGN IN AS ADMINISTRATOR</h2>
 
           {inputs.map(({ label, name, placeholder }, idx) => (
@@ -58,19 +64,12 @@ const LoginForm = ({
                 name={name}
                 placeholder={placeholder}
                 onChange={(e) => changeValue(e)}
+                required
               />
             </FormLabel>
           ))}
 
-          <SignInButton
-            type="submit"
-            value="SIGN IN"
-            onClick={(e) => {
-              const { email, password } = userData;
-              e.preventDefault();
-              signIn(email, password);
-            }}
-          />
+          <SignInButton type="submit" value="SIGN IN" />
         </FormContainer>
       </LoginFormContainer>
       {isLoading ? <LoadingOverlay /> : null}

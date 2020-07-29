@@ -6,7 +6,7 @@ import {
   subtractItem,
   addItem,
   clearItem,
-} from "../../redux/cart/cart.actions";
+} from "../../../redux/cart/cart.actions";
 
 import {
   CheckoutItemContainer,
@@ -18,11 +18,11 @@ import {
   RemoveContainer,
 } from "./checkout-item.styles";
 
-import CustomTextSpan from "../custom-text-span/custom-text-span.component";
+import CustomTextSpan from "../../custom-text-span/custom-text-span.component";
 
-import { ReactComponent as DecrementIcon } from "../../assets/decrement-button.svg";
-import { ReactComponent as IncrementIcon } from "../../assets/increment-button.svg";
-import { ReactComponent as RemoveIcon } from "../../assets/remove-button.svg";
+import { ReactComponent as DecrementIcon } from "../../../assets/decrement-button.svg";
+import { ReactComponent as IncrementIcon } from "../../../assets/increment-button.svg";
+import { ReactComponent as RemoveIcon } from "../../../assets/remove-button.svg";
 
 const CheckoutItem = ({ item, subtractItem, addItem, clearItem, history }) => {
   const {

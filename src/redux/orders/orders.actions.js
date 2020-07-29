@@ -86,3 +86,22 @@ export const addItemByQuery = (uid, item, category, activeOrder) => ({
   type: OrdersActionTypes.ADD_ITEM_BY_QUERY,
   payload: { uid, item, category, activeOrder },
 });
+
+export const saveOrderToFirebaseStart = (order) => ({
+  type: OrdersActionTypes.SAVE_ORDER_TO_FIREBASE_START,
+  payload: order,
+});
+
+export const saveOrderToFirebaseSuccess = () => ({
+  type: OrdersActionTypes.SAVE_ORDER_TO_FIREBASE_SUCCESS,
+});
+
+export const saveOrderToFirebaseFailure = (error) => ({
+  type: OrdersActionTypes.SAVE_ORDER_TO_FIREBASE_FAILURE,
+  payload: error,
+});
+
+export const hideBadge = (badge) => ({
+  type: OrdersActionTypes.HIDE_BADGE,
+  payload: badge,
+});

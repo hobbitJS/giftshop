@@ -7,20 +7,29 @@ export const SearchPanelContainer = styled.form`
     width: 385px;
     display: flex;
     padding: 5px;
-    order: 3;
     border: 1px solid #d893a2;
     border-radius: 5px;
     box-sizing: content-box;
+    order: ${({ place }) => (place === "header" ? 3 : 1)};
 
-    svg {
+    button {
       height: 100%;
       width: 5%;
-      cursor: pointer;
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      outline: none;
+
+      svg {
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+      }
     }
   }
 
   @media ${device.tablet} {
-    order: 2;
+    order: ${({ place }) => (place === "search-panel-header" ? 2 : 1)};
   }
 `;
 

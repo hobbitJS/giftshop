@@ -42,15 +42,16 @@ export const HomeMenuContainer = styled.div`
   @media ${device.mobileS} {
     width: 320px;
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: column;
     align-items: center;
-    padding: 0 5px;
+    padding: 0 15px;
   }
 
   @media ${device.tablet} {
     width: 100vw;
-    height: 60vh;
-    flex-wrap: nowrap;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   @media ${device.laptopL} {
@@ -59,61 +60,48 @@ export const HomeMenuContainer = styled.div`
   }
 `;
 
-export const HomeMenuItem = styled.div`
+export const MenuItem = styled.div`
   @media ${device.mobileS} {
+    height: 300px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid black;
-    margin: 0 7.5px 15px;
+    margin: 5px 0;
     overflow: hidden;
-    height: ${(props) => (props.isLarge ? 400 : 300)}px;
+    position: relative;
+
+    button {
+      margin-top: 100px;
+      position: absolute;
+    }
   }
 
   @media ${device.tablet} {
-    width: 50%;
+    height: ${({ isHigher }) => (isHigher ? `400` : `300`)}px;
+    width: ${({ isHigher }) => (isHigher ? `calc(50% - 5px)` : `33%`)};
+    margin: 5px 0;
   }
 
   @media ${device.laptop} {
     &:hover {
       cursor: pointer;
 
-      & .background-image {
+      & .item-background-image {
         transform: scale(1.1);
       }
     }
   }
-
-  @media ${device.laptopL} {
-    height: 90%;
-    margin: 0 7.5px;
-  }
 `;
 
-export const HomeBackgroundImage = styled.div`
+export const ItemBackgroundImg = styled.div`
   @media ${device.mobileS} {
     width: 100%;
     height: 100%;
     background-position: center;
     background-size: cover;
     transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
-    background-image: url(${(props) => detectImage(props.background)});
-  }
-`;
-
-export const HomeMenuLink = styled.div`
-  @media ${device.mobileS} {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 80px;
-    padding: 0 10px;
-    position: absolute;
-    transition: opacity 0.7s ease;
-    font-weight: bold;
-    font-size: 22px;
-    color: #4a4a4a;
+    background-image: url(${({ background }) => detectImage(background)});
   }
 `;

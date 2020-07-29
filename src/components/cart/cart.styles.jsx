@@ -3,20 +3,28 @@ import { device } from "../../device";
 
 export const CartContainer = styled.div`
   @media ${device.mobileS} {
+    height: 100%;
     position: relative;
-    align-self: flex-end;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+
+    & > div {
+      height: 35%;
+      display: flex;
+      align-items: flex-end;
+    }
   }
 `;
 
 export const CartIconContainer = styled.div`
   @media ${device.mobileS} {
     width: 30px;
-    height: 30px;
     position: relative;
 
     .cart-icon {
-      width: 100%;
-      height: 100%;
+      height: 30px;
+      width: 30px;
     }
   }
 
@@ -27,10 +35,8 @@ export const CartIconContainer = styled.div`
 
 export const TriangleContainer = styled.div`
   @media ${device.mobileS} {
-    padding-left: 3px;
-    padding-top: 5px;
-
     div {
+      padding-top: 10px;
       width: 0;
       height: 0;
       border-style: solid;

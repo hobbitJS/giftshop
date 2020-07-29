@@ -17,9 +17,9 @@ import {
 
 import { selectShowCheckoutModal } from "../../redux/checkout/checkout.selectors";
 
-import CheckoutForm from "../../components/checkout-form/checkout-form.component";
-import CheckoutItem from "../../components/checkout-item/checkout-item.component";
-import CheckoutModal from "../../components/checkout-modal/checkout-modal.component";
+import CheckoutForm from "../../components/checkout-page-components/checkout-form/checkout-form.component";
+import CheckoutItem from "../../components/checkout-page-components/checkout-item/checkout-item.component";
+import CheckoutModal from "../../components/checkout-page-components/checkout-modal/checkout-modal.component";
 import CustomTextSpan from "../../components/custom-text-span/custom-text-span.component";
 
 const Checkout = ({ cartItems, showCheckoutModal, totalToPay }) => {

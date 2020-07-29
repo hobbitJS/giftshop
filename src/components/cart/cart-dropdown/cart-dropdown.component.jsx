@@ -32,7 +32,6 @@ import CartItem from "../cart-item/cart-item.component";
 import { ReactComponent as XButton } from "../../../assets/x-button.svg";
 import { ReactComponent as Check } from "../../../assets/check.svg";
 
-import CustomTextSpan from "../../custom-text-span/custom-text-span.component";
 import CustomButton from "../../custom-button/custom-button.component";
 
 import {
@@ -59,56 +58,49 @@ class CartDropdown extends React.Component {
     window.removeEventListener("beforeunload", this.componentCleanup);
   }
 
+  show() {
+    const { showTriangle, showCartAction } = this.props;
+
+    showTriangle();
+    showCartAction();
+    showCartDropdown();
+  }
+
+  hide() {
+    const { hideTriangle, hideAddItemMessage, hideCartAction } = this.props;
+
+    hideTriangle();
+    hideAddItemMessage();
+    hideCartAction();
+    hideCartDropdown();
+  }
+
   render() {
-    const {
-      cartItems,
-      count,
-      isHiddenMessage,
-      subtotal,
-      hideCartAction,
-      hideAddItemMessage,
-      showTriangle,
-      hideTriangle,
-      showCartAction,
-    } = this.props;
+    const { cartItems, count, isHiddenMessage, subtotal } = this.props;
+
     return (
       <CartDropdownContainer
         id="cart-dropdown"
-        onMouseEnter={() => {
-          showTriangle();
-          showCartAction();
-          showCartDropdown();
-        }}
-        onMouseLeave={() => {
-          hideTriangle();
-          hideAddItemMessage();
-          hideCartAction();
-          hideCartDropdown();
-        }}
+        onMouseEnter={() => this.show()}
+        onMouseLeave={() => this.hide()}
       >
         <CartDropdownHeader>
           <CartDropdownSubheader>
-            <CustomTextSpan>
+            <span>
               <b>My Bag, </b>
               {count === 0
                 ? `is empty`
                 : count > 1
                 ? `${count} items`
                 : `1 item`}
-            </CustomTextSpan>
-            <XButton
-              onClick={() => {
-                hideTriangle();
-                hideAddItemMessage();
-                hideCartAction();
-                hideCartDropdown();
-              }}
-            />
+            </span>
+            <XButton onClick={() => this.hide()} />
           </CartDropdownSubheader>
+
           {!isHiddenMessage ? (
             <AddItemMessageContainer>
               <Check />
-              <CustomTextSpan text="It's in the bag" />
+              <span>It's in the bag</span>
             </AddItemMessageContainer>
           ) : null}
         </CartDropdownHeader>
@@ -118,23 +110,11 @@ class CartDropdown extends React.Component {
         ))}
 
         <CartSubtotalContainer>
-          <CustomTextSpan text={"Sub-total:"} />
-          <CustomTextSpan text={`$${subtotal}`} />
+          <span>Sub-total:</span>
+          <span>{`$${subtotal}`}</span>
         </CartSubtotalContainer>
         {count > 0 ? (
-          <CustomButton
-            isText
-            width={`70%`}
-            color={`white`}
-            bgColor={`black`}
-            bgColorHover={`rgba(142,115,41,1)`}
-            onClick={() => {
-              hideTriangle();
-              hideAddItemMessage();
-              hideCartAction();
-              hideCartDropdown();
-            }}
-          >
+          <CustomButton blackButton onClick={() => this.hide()}>
             <Link to="/checkout">GO TO CHECKOUT</Link>
           </CustomButton>
         ) : null}

@@ -22,6 +22,12 @@ const INITIAL_STATE = {
   itemsByQuery: {},
   errorByQuery: "",
   isLoadingByQuery: false,
+  showBadge: {
+    success: false,
+    failure: false,
+  },
+  isLoadingToDatabase: false,
+  savingToDatabaseError: "",
 };
 
 const OrdersReducer = (state = INITIAL_STATE, action) => {
@@ -140,6 +146,42 @@ const OrdersReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         recievedOrders: addItemByQuery(state.recievedOrders, action.payload),
+      };
+
+    case OrdersActionTypes.SAVE_ORDER_TO_FIREBASE_START:
+      return {
+        ...state,
+        isLoadingToDatabase: true,
+      };
+
+    case OrdersActionTypes.SAVE_ORDER_TO_FIREBASE_SUCCESS:
+      return {
+        ...state,
+        showBadge: {
+          ...state.showBadge,
+          success: true,
+        },
+        isLoadingToDatabase: false,
+      };
+
+    case OrdersActionTypes.SAVE_ORDER_TO_FIREBASE_FAILURE:
+      return {
+        ...state,
+        showBadge: {
+          ...state.showBadge,
+          failure: true,
+        },
+        isLoadingToDatabase: false,
+        savingToDatabaseError: action.payload.error,
+      };
+
+    case OrdersActionTypes.HIDE_BADGE:
+      return {
+        ...state,
+        showBadge: {
+          ...state.showBadge,
+          [action.payload]: false,
+        },
       };
 
     default:

@@ -3,7 +3,6 @@ import { device } from "../../../device";
 
 export const CartDropdownContainer = styled.div`
   @media ${device.mobileS} {
-    min-width: 160px;
     max-width: 290px;
     min-height: 44px;
     display: flex;
@@ -26,6 +25,18 @@ export const CartDropdownContainer = styled.div`
       }
     }
   }
+
+  @media ${device.tablet} {
+    max-width: 350px;
+  }
+
+  @media ${device.laptop} {
+    right: 20px;
+  }
+
+  @media ${device.laptopL} {
+    right: 0;
+  }
 `;
 
 export const CartDropdownHeader = styled.div`
@@ -38,10 +49,10 @@ export const CartDropdownHeader = styled.div`
 
 export const CartDropdownSubheader = styled.div`
   height: 42px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   padding: 5px 10px;
   background-color: rgba(227, 227, 227, 0.8);
 

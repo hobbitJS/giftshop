@@ -22,10 +22,15 @@ const ProductCard = ({ item, category, history }) => {
       discountPrices.push(options[i].discountPrice);
     }
 
-    const deduceRange = (arr) =>
-      arr.length === 1 ? arr : [Math.min(...arr), Math.max(...arr)];
+    const deduceRange = (arr) => {
+      const min = Math.min(...arr);
+      const max = Math.max(...arr);
 
-    const convertRangeToStr = (arr) => arr.map((el) => `$${el}`).join(" - ");
+      return arr.length === 1 ? arr : min === max ? max : [min, max];
+    };
+
+    const convertRangeToStr = (range) =>
+      isNaN(range) ? range.map((el) => `$${el}`).join(" - ") : `$${range}`;
 
     const discountRange = deduceRange(discountPrices);
     const standardRange = deduceRange(standardPrices);
@@ -42,20 +47,19 @@ const ProductCard = ({ item, category, history }) => {
     return (
       <ProductCardPriceContainer>
         {isOnSale ? (
-          <ProductCardPrice discount>
-            {convertRangeToStr(discountRange)} SALE
-          </ProductCardPrice>
+          <React.Fragment>
+            <ProductCardPrice discount>
+              {convertRangeToStr(discountRange)} SALE
+            </ProductCardPrice>
+            <ProductCardPrice old>
+              {convertRangeToStr(standardRange)}
+            </ProductCardPrice>
+          </React.Fragment>
         ) : (
           <ProductCardPrice standard>
             {convertRangeToStr(standardRange)}
           </ProductCardPrice>
         )}
-
-        {isOnSale ? (
-          <ProductCardPrice old>
-            {convertRangeToStr(standardRange)}
-          </ProductCardPrice>
-        ) : null}
       </ProductCardPriceContainer>
     );
   };

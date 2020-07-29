@@ -11,21 +11,18 @@ import {
   clearQueryValue,
 } from "../../redux/search-panel-header/search-panel-header.actions";
 
-import { ReactComponent as Logo } from "../../assets/logo.svg";
+import logob from "../../assets/logob.png";
 
 import {
   HeaderLayoutContainer,
   HeaderContainer,
   NavContainer,
   LogoContainer,
-  HeaderLinksContainer,
-  HeaderLink,
   HeaderUtilityContainer,
-  LoginLinkContainer,
 } from "./header.styles";
 
 import SearchPanel from "../search-panel/search-panel.component";
-import { ReactComponent as LoginUserIcon } from "../../assets/user-login.svg";
+import Auth from "../header/auth/auth.component";
 import Cart from "../cart/cart.component";
 import CartDropdown from "../cart/cart-dropdown/cart-dropdown.component";
 
@@ -45,27 +42,19 @@ const Header = ({
       <HeaderContainer>
         <NavContainer>
           <LogoContainer to="/">
-            <Logo className="logo" />
+            <img src={logob} alt="Logo" className="logo" />
           </LogoContainer>
-
-          {/* <HeaderLinksContainer>
-            <HeaderLink to="/contact">CONTACT</HeaderLink>
-            <HeaderLink to="/about-us">ABOUT US</HeaderLink>
-          </HeaderLinksContainer> */}
 
           <SearchPanel
             value={searchPanelQueryValue}
             handleChange={changeQueryValue}
             handleClear={clearQueryValue}
             handleSubmit={handleSubmit}
-            className="search-panel-header"
+            place="header"
           />
 
           <HeaderUtilityContainer>
-            <LoginLinkContainer to="/login" title="Login">
-              <LoginUserIcon />
-            </LoginLinkContainer>
-
+            <Auth />
             <Cart />
           </HeaderUtilityContainer>
         </NavContainer>

@@ -16,7 +16,10 @@ export const ProductImage = styled.div`
     align-items: center;
     background-image: url(${({ image }) => `${image}`});
     background-position: 28% 0%;
-    background-size: cover;
+    background-size: ${({ category }) =>
+      category === "bouquets" || category === "plants" || category === "boxes"
+        ? "cover"
+        : "contain"};
     background-repeat: no-repeat;
     position: relative;
   }
@@ -44,113 +47,11 @@ export const ProductImage = styled.div`
   }
 `;
 
-export const ProductOptionIconContainer = styled.div`
-  @media ${device.mobileS} {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-  }
-
-  @media ${device.tablet} {
-    right: auto;
-    bottom: 10px;
-    left: 20px;
-  }
-`;
-
-export const ProductOptionIcon = styled.div`
-  @media ${device.mobileS} {
-    background-image: url(${({ image }) => `${image}`});
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 80px;
-    height: 80px;
-    margin: 2px;
-    transition: all 0.2s ease;
-    box-shadow: ${({ active }) =>
-      active ? "3px 0 0 0 rgba(142,115,41,1)" : ""};
-  }
-
-  @media ${device.laptop} {
-    cursor: pointer;
-
-    &:hover {
-      box-shadow: 3px 0 0 0 rgba(142, 115, 41, 1);
-    }
-  }
-`;
-
-export const ProductOptionsContainer = styled.div`
-  @media ${device.mobileS} {
-    width: 320px;
-    padding: 25px 20px;
-    margin: 0 auto;
-    background-color: white;
-    position: absolute;
-    bottom: ${({ itemsCount }) => `-${itemsCount * 100 + 185}px`};
-    right: 0;
-    left: 0;
-  }
-
-  @media ${device.tablet} {
-    width: 300px;
-    bottom: auto;
-    left: auto;
-  }
-`;
-
-export const ProductOptions = styled.div``;
-
-export const ProductOptionContainer = styled.div`
-  @media ${device.mobileS} {
-    display: flex;
-    min-height: 82px;
-    border: 1px solid lightgrey;
-    margin-bottom: 15px;
-    transition: all 0.2s ease;
-
-    box-shadow: ${({ active }) =>
-      active ? `0 0 0 2px rgb(142, 115, 41)` : ""};
-  }
-
-  @media ${device.laptop} {
-    cursor: pointer;
-
-    &:hover {
-      box-shadow: 0 0 0 2px rgb(142, 115, 41);
-    }
-  }
-`;
-
-export const ProductOptionImage = styled.div`
-  @media ${device.mobileS} {
-    width: 80px;
-    height: 80px;
-    background-image: url(${({ image }) => `${image}`});
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-`;
-
-export const ProductOptionDescription = styled.div`
-  @media ${device.mobileS} {
-    padding: 0 15px;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-  }
-`;
-
 export const ProductDetailsSection = styled.div`
   @media ${device.mobileS} {
     display: flex;
     flex-flow: column;
-    margin: ${({ itemsCount }) => `${itemsCount * 100 + 185}px auto 0 auto`};
+    margin: ${({ itemsCount }) => `${itemsCount * 100 + 235}px auto 0 auto`};
 
     & > div {
       width: 100%;
@@ -160,12 +61,13 @@ export const ProductDetailsSection = styled.div`
   }
 
   @media ${device.tablet} {
-    margin: 50px auto 0;
+    margin: ${({ itemsCount }) => `${(itemsCount / 3) * 100 + 185}px auto 0`};
   }
 
   @media ${device.laptop} {
     flex-flow: row;
     max-width: 1110px;
+    margin: 50px auto 0;
 
     & > div {
       width: 50%;

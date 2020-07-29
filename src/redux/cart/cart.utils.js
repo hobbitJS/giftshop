@@ -15,7 +15,8 @@ export const addItem = (cartItems, cartItemToAdd) => {
 
     return (
       item.id === itemToAdd.id &&
-      item.selectedOption.attribute === isAddedFromCheckout
+      item.selectedOption.attribute === isAddedFromCheckout &&
+      item.selectedOption.title === itemToAdd.options[selectedOption].title
     );
   };
 
@@ -63,12 +64,15 @@ export const subtractItem = (cartItems, itemToSubtract) => {
 export const clearItem = (cartItems, itemToClear) => {
   const {
     id,
-    selectedOption: { attribute },
+    selectedOption: { attribute, title },
   } = itemToClear;
+  console.log(title);
 
   return cartItems.filter(
     (cartItem) =>
-      cartItem.id !== id || cartItem.selectedOption.attribute !== attribute
+      cartItem.id !== id ||
+      cartItem.selectedOption.attribute !== attribute ||
+      cartItem.selectedOption.title !== title
   );
 };
 

@@ -1,15 +1,17 @@
 import styled, { css } from "styled-components";
 import { device } from "../../device";
 
-import cart from "../../assets/cart.svg";
-
 const buttonStyles = css`
   @media ${device.mobileS} {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 50px;
+    line-height: 50px;
+    font-size: 15px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    font-family: "Raleway", sans-serif;
+    font-weight: bolder;
     border: none;
+    outline: none;
   }
 
   @media ${device.laptop} {
@@ -18,55 +20,28 @@ const buttonStyles = css`
   }
 `;
 
-const textStyles = css`
-  @media ${device.mobileS} {
-    width: ${({ width }) => (width ? `${width}` : "auto")};
-    color: ${({ color }) => (color ? `${color}` : "black")};
-    line-height: 50px;
-    padding: 0 10px;
-    font-size: 15px;
-    text-transform: uppercase;
-    font-family: "Raleway", sans-serif;
-    font-weight: bolder;
+const blackButtonStyles = css`
+  width: ${({ width }) => (width ? `${width}%` : "70%")};
+  /* min-width: 200px; */
+  color: white;
+  background-color: black;
+
+  &:hover {
+    background-color: rgba(142, 115, 41, 1);
   }
 `;
 
-const iconStyles = css`
-  @media ${device.mobileS} {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-position: 40% 50%;
-    background-repeat: no-repeat;
-    background-size: 60% 60%;
+const whiteButtonStyles = css`
+  background-color: rgba(255, 255, 255, 0.8);
+
+  &:hover {
+    color: white;
+    background-color: black;
   }
-
-  @media ${device.laptop} {
-    &:hover {
-      background-color: rgba(216, 147, 162, 0.7);
-    }
-  }
-`;
-
-const addToCartImage = css`
-  background-image: ${`url(${cart})`};
-`;
-
-const isAbsoluteStyles = css`
-  position: absolute;
 `;
 
 export const CustomButtonContainer = styled.button`
   ${buttonStyles}
-  ${({ isText }) => (isText ? textStyles : "")}
-  ${({ isIcon }) => (isIcon ? iconStyles : "")}
-  ${({ addToCartImg }) => (addToCartImg ? addToCartImage : "")}
-  ${({ isAbsolute }) => (isAbsolute ? isAbsoluteStyles : "")}
-  background-color: ${({ bgColor }) => (bgColor ? `${bgColor}` : "")};
-  
-  &:hover {
-    color: ${({ colorHover }) => (colorHover ? `${colorHover}` : "")};
-    background-color: ${({ bgColorHover }) =>
-      bgColorHover ? `${bgColorHover}` : ""}
-  }
+  ${({ blackButton }) => (blackButton ? blackButtonStyles : "")}
+  ${({ whiteButton }) => (whiteButton ? whiteButtonStyles : "")}
 `;

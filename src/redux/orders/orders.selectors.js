@@ -1,5 +1,4 @@
 import { createSelector } from "reselect";
-import { selectOrder } from "./orders.actions";
 
 const selectOrders = (state) => state.orders;
 
@@ -50,4 +49,19 @@ export const selectIsLoadedByQuery = createSelector([selectOrders], (orders) =>
 export const selectItemsByQuery = createSelector(
   [selectOrders],
   (orders) => orders.itemsByQuery
+);
+
+export const selectShowBadgeSuccess = createSelector(
+  [selectOrders],
+  (orders) => orders.showBadge.success
+);
+
+export const selectShowBadgeFailure = createSelector(
+  [selectOrders],
+  (orders) => orders.showBadge.failure
+);
+
+export const selectIsLoadingToDatabase = createSelector(
+  [selectOrders],
+  (orders) => orders.isLoadingToDatabase
 );

@@ -13,6 +13,8 @@ import {
   selectFilter,
   fetchByQuerySuccess,
   fetchByQueryFailure,
+  saveOrderToFirebaseSuccess,
+  saveOrderToFirebaseFailure,
 } from "./orders.actions";
 
 export function* fetchOrdersAsync(category) {
@@ -66,6 +68,28 @@ export function* fetchByQyeryStart() {
   yield takeLatest(OrdersActionTypes.FETCH_BY_QUERY_START, fetchByQueryAsync);
 }
 
+export function* saveOrderToFirebaseAsync({ payload: { uid, data } }) {
+  try {
+    const orderRef = yield firestore.collection("orders").doc(uid);
+
+    yield orderRef.update(data);
+    yield put(saveOrderToFirebaseSuccess());
+  } catch (error) {
+    yield put(saveOrderToFirebaseFailure(error.message));
+  }
+}
+
+export function* saveOrderToFirebaseStart() {
+  yield takeLatest(
+    OrdersActionTypes.SAVE_ORDER_TO_FIREBASE_START,
+    saveOrderToFirebaseAsync
+  );
+}
+
 export function* ordersSagas() {
-  yield all([call(fetchOrdersStart), call(fetchByQyeryStart)]);
+  yield all([
+    call(fetchOrdersStart),
+    call(fetchByQyeryStart),
+    call(saveOrderToFirebaseStart),
+  ]);
 }

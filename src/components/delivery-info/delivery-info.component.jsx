@@ -20,6 +20,7 @@ const DeliveryInfo = ({
 }) => (
   <DeliveryInfoContainer>
     <InfoDetails />
+
     <Modal
       title={`Delivery, Service, and Shipping Policy`}
       isShown={isShownDeliveryDetails}
@@ -27,6 +28,7 @@ const DeliveryInfo = ({
     >
       <DeliveryDetails />
     </Modal>
+
     <Modal
       title={`Substitution Policy`}
       isShown={isShownSubstitutionPolicy}

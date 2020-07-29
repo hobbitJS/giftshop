@@ -23,4 +23,6 @@ export const SelectedOptionList = styled.ul`
   padding: 0 0 0 20px;
 `;
 
-export const SelectedOptionListItem = styled.li``;
+export const SelectedOptionListItem = styled.li`
+  text-transform: capitalize;
+`;

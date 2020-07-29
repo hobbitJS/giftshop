@@ -29,26 +29,27 @@ const CartItem = ({ item, clearItem, history }) => {
 
   const linkToItem = () => {
     history.push(`/shop/${category}/${id}/${optionNumber}`);
-    console.log(history);
   };
 
   return (
     <CartItemContainer>
       <CartItemImage image={image} onClick={() => linkToItem()} />
       <CartItemDetails onClick={() => linkToItem()}>
-        <CustomTextSpan text={title} size="16" weight="bold" />
-        <CustomTextSpan>
-          <b>Option: </b>
-          {attribute}
-        </CustomTextSpan>
+        <CustomTextSpan text={title} weight="bold" />
+        {attribute || item.selectedOption.title ? (
+          <span>
+            <b>Option: </b>
+            {attribute ? attribute : item.selectedOption.title}
+          </span>
+        ) : null}
         <CartItemQuantityPrice>
-          <CustomTextSpan size="16">
+          <span>
             Quantity:<b>{quantity}</b>
-          </CustomTextSpan>
-          <CustomTextSpan size="16">
+          </span>
+          <span>
             Price:
             <b>${(price > discountPrice ? discountPrice : price) * quantity}</b>
-          </CustomTextSpan>
+          </span>
         </CartItemQuantityPrice>
       </CartItemDetails>
 
