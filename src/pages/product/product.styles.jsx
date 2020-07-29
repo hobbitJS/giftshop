@@ -61,7 +61,8 @@ export const ProductDetailsSection = styled.div`
   }
 
   @media ${device.tablet} {
-    margin: ${({ itemsCount }) => `${(itemsCount / 3) * 100 + 185}px auto 0`};
+    margin: ${({ itemsCount }) =>
+      `${Math.ceil(itemsCount / 3) * 105 + 200}px auto 0`};
   }
 
   @media ${device.laptop} {
