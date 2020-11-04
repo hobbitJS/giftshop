@@ -19,8 +19,12 @@ export const CartDropdownContainer = styled.div`
 
     button {
       margin: 10px;
+      padding: 0;
 
       a {
+        display: block;
+        height: 100%;
+        width: 100%;
         color: white;
       }
     }

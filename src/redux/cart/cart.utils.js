@@ -9,14 +9,14 @@ export const addItem = (cartItems, cartItemToAdd) => {
   } = cartItemToAdd;
 
   const checkItem = (item, itemToAdd) => {
-    const isAddedFromCheckout = addItemFromCheckout
+    const checkoutItemAttr = addItemFromCheckout
       ? itemToAdd.selectedOption.attribute
       : itemToAdd.options[selectedOption].attribute;
 
     return (
       item.id === itemToAdd.id &&
-      item.selectedOption.attribute === isAddedFromCheckout &&
-      item.selectedOption.title === itemToAdd.options[selectedOption].title
+      item.selectedOption.attribute === checkoutItemAttr &&
+      item.title === title
     );
   };
 
